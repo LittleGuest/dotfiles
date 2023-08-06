@@ -5,3 +5,4 @@ DOTFILES_PATH=~/workspace/dotfiles
 # ln -s ${DOTFILES_PATH}/hypr ~/.config/hypr
 # ln -s ${DOTFILES_PATH}/waybar ~/.config/waybar
 # ln -s ${DOTFILES_PATH}/wofi ~/.config/wofi
+# ln -s ${DOTFILES_PATH}/alacritty ~/.config/alacritty
