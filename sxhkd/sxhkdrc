@@ -1,0 +1,15 @@
+; super + Return
+;     alacritty
+
+; super + w
+;     firefox
+
+; super + e
+;     nautilus
+
+; super + p
+;     rofi -show drun
+
+
+; button2
+;     echo -n | xclip -in
