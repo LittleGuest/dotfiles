@@ -1,15 +1,20 @@
-; super + Return
-;     alacritty
+# super + Return
+#     alacritty
 
-; super + w
-;     firefox
+# super + w
+#     firefox
 
-; super + e
-;     nautilus
+# super + e
+#     nautilus
 
-; super + p
-;     rofi -show drun
+# super + p
+#     rofi -show drun
 
 
-; button2
-;     echo -n | xclip -in
+# button2
+#     echo -n | xclip -in
+
+
+super + shift + a
+    grim -g "$(slurp -o -r -c '#ff0000ff')" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+
