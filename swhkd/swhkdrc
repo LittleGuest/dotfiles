@@ -1,11 +1,10 @@
 super + Return
-  alacritty
+    alacritty
 
 
 super + shift + p
-  rofi -show drun
-
-
-super + k
     rofi -show drun
 
+
+super + shift + e
+    firefox
