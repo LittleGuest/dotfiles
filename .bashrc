@@ -13,15 +13,15 @@ PS1='[\u@\h \W]\$ '
 alias ls="lsd"
 alias ll="lsd -l"
 
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export XMODIFIERS="@im=fcitx"
 
-export WIFI_SSID="qlei"
-export WIFI_PASS="@#\$PJQpjq9527"
+export DOTFILES_PATH=$HOME/code/dotfiles
+export HOST_IP="192.168.31.129"
+export WIFI_SSID=""
+export WIFI_PASS=""
 export XDG_CONFIG_HOME=$HOME/.config
-# export XDG_RUNTIME_DIR=
-# export XDG_CONFIG_DIRS=/etc
 
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
