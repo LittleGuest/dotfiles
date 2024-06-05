@@ -1,7 +1,7 @@
 #!/bin/bash
 
+sudo pacman -S archlinuxcn-keyring archlinuxcn-mirrorlist-git
 sudo pacman-key --lsign-key "farseerfc@archlinux.org"
-sudo pacman -S archlinuxcn-keyring
 sudo parman -S git
 sudo pacman -S paru
 sudo pacman -S neovim-git
@@ -106,6 +106,7 @@ paru -S scrcpy
 # paru -S nerd-fonts-git
 paru -S utools
 paru -S arp-scan
+paru -S rpi-imager
 
 # Setup configs
 rm -f "$HOME/.bashrc"
@@ -132,17 +133,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh
 
 # cargo command
 cargo install cargo-deny
-cargo install cargo-embed
 cargo install cargo-expand
-cargo install cargo-flash
 cargo install cargo-generate
 cargo install cargo-tarpaulin
-cargo install cargo-clippy
-cargo install cargo-create-tauri-app
 cargo install cargo-espflash
 cargo install cargo-espmonitor
-cargo install cargo-embed
-cargo install cargo-tauri
 cargo install create-tauri-app
 cargo install crm
 cargo install cross
@@ -164,5 +159,4 @@ cargo install clippy-driver
 cargo install cross-util
 cargo install devserver
 cargo install trunk
-cargo install web-flash
 cargo install wokwi-server
