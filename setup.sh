@@ -109,6 +109,7 @@ paru -S arp-scan
 paru -S rpi-imager
 
 # Setup configs
+export DOTFILES_PATH=$HOME/code/dotfiles
 rm -f "$HOME/.bashrc"
 ln -s "${DOTFILES_PATH}/.bashrc" "$HOME/.bashrc"
 source "$HOME/.bashrc"
@@ -127,7 +128,7 @@ paru -S apifox
 paru -S podman
 paru -S wireshark-git
 # paru -S mqttx-bin
-# paru -S beekeeper-studio-git
+# paru -S beekeeper-studio-bin
 
 curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh
 

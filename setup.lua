@@ -2,6 +2,8 @@
 
 -- 重试次数
 local retry_max = 3
+-- 失败的命令
+local failed_cmds = {}
 
 -- 执行单条命令
 function install_single(cmd)
@@ -14,6 +16,8 @@ function install_single(cmd)
 			local retry_status = os.execute(cmd)
 			if retry_status ~= nil then
 				break
+			elseif i == retry_max then
+				table.insert(failed_cmds, cmd)
 			end
 		end
 	else
@@ -28,21 +32,22 @@ local cmds = {
 	"sudo pacman -S paru",
 	"sudo pacman -S neovim-git",
 	-- Basic softwares
-	"paru -S hyprland hyprlock waybaru mako",
+	"paru -S hyprland hyprlock waybar mako",
 
 	-- Terminal
 	"paru -S alacritty",
 	-- 网络管理器
 	"paru -S nm-connection-editor",
 	-- 字体
-	"paru -S adobe-source-han-serif-cn-fonts wqy-zenhei ttf-firacode-nerd",
-	"paru -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra",
+	"paru -S wqy-zenhei ttf-firacode-nerd",
+	-- "paru -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra",
 	-- Audio
-	"paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils pactl",
+	-- "paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol",
+	"paru -S alsa-utils pactl",
 	-- 中文输入法
 	"paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua",
 	-- Install Intel GPU driver (for others, please refer to offical document):
-	"sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
+	-- "sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
 	-- 截屏
 	"paru -S grim slurp swappy",
 	"paru -S xdg-desktop-portal-hyprland",
@@ -50,8 +55,7 @@ local cmds = {
 	-- 剪切板历史
 	"paru -S wl-clipboard cliphist",
 	-- FUCK
-	"paru -S v2ray v2raya",
-	"sudo systemctl enable v2raya.service",
+	"paru -S v2ray v2raya && sudo systemctl enable v2raya.service",
 	-- File Manager
 	"paru -S nautilus",
 	-- Picture Viewer
@@ -65,7 +69,6 @@ local cmds = {
 	"paru -S wps-office",
 	"paru -S qbittorrent",
 	"paru -S meld",
-	"paru -S flameshot",
 	"paru -S feishu-bin",
 	"paru -S lazygit",
 	"paru -S ripgrep",
@@ -85,7 +88,8 @@ local cmds = {
 	"paru -S switchhosts",
 	-- paru -S fish
 	"paru -S aseprite",
-	"paru -S piskelemqx-git",
+	"paru -S piskele",
+	"paru -S mqx-git",
 	"paru -S udisk2 udiskie",
 	"paru -S dunst",
 	-- paru -S mako
@@ -98,9 +102,10 @@ local cmds = {
 	"paru -S rpi-imager",
 
 	-- Setup configs
+	"export DOTFILES_PATH=$HOME/code/dotfiles",
 	'rm -f "$HOME/.bashrc" && ln -s "${DOTFILES_PATH}/.bashrc" "$HOME/.bashrc" && source "$HOME/.bashrc"',
 	'git clone https://github.com/LittleGuest/dotfiles.git "$DOTFILES_PATH"',
-	'sh("$DOTFILES_PATH/install.sh")',
+	'sh "$DOTFILES_PATH/install.sh"',
 
 	--
 	-- development
@@ -110,11 +115,11 @@ local cmds = {
 	"paru -S redis",
 	"paru -S postgresql",
 	"paru -S code",
-	"paru -S apifox",
+	"paru -S apifox-bin",
 	"paru -S podman",
 	"paru -S wireshark-git",
 	-- paru -S mqttx-bin
-	-- paru -S beekeeper-studio-git
+	-- paru -S beekeeper-studio-bin
 
 	-- https://rsproxy.cn/
 	"curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh",
@@ -152,6 +157,46 @@ local archlinuxcn_repo = [[
 Server = https://repo.archlinuxcn.org/$arch
 ]]
 
-for _, cmd in pairs(cmds) do
-	install_single(cmd)
+function update_pacman_conf()
+	local path = "/etc/pacman.conf"
+	local file = io.open(path, "a+")
+
+	if not file then
+		print("无法打开 " .. path)
+		return
+	end
+
+	local content = file:read("a")
+	if not content then
+		return
+	end
+	local rpt = false
+	if string.find(content, "archlinuxcn") then
+		rpt = true
+	end
+
+	if not rpt then
+		file:write(archlinuxcn_repo)
+	end
+
+	file:close()
 end
+
+-- 执行命令
+function install_cmds()
+	for _, cmd in pairs(cmds) do
+		install_single(cmd)
+	end
+end
+
+-- 输出执行失败的
+function print_failed_cmds()
+	print("\n以下命令执行失败：")
+	for _, cmd in pairs(failed_cmds) do
+		print(cmd)
+	end
+end
+
+update_pacman_conf()
+install_cmds()
+print_failed_cmds()
