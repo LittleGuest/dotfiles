@@ -101,6 +101,9 @@ local cmds = {
 	"paru -S arp-scan",
 	"paru -S rpi-imager",
 
+	"paru -S lceda-pro-bin", -- 嘉立创EDA
+	"paru -S jlc-assistant-bin", -- 嘉立创下单助手
+
 	-- Setup configs
 	"export DOTFILES_PATH=$HOME/code/dotfiles",
 	'rm -f "$HOME/.bashrc" && ln -s "${DOTFILES_PATH}/.bashrc" "$HOME/.bashrc" && source "$HOME/.bashrc"',
@@ -120,6 +123,10 @@ local cmds = {
 	"paru -S wireshark-git",
 	-- paru -S mqttx-bin
 	-- paru -S beekeeper-studio-bin
+
+	-- tauri needed
+	"paru -S webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg",
+	"rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android",
 
 	-- https://rsproxy.cn/
 	"curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh",
