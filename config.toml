@@ -1,110 +1,102 @@
 cmds = [
   "sudo pacman -Syu archlinuxcn-keyring archlinuxcn-mirrorlist-git",
   'sudo pacman-key --lsign-key "farseerfc@archlinux.org"',
-  "sudo pacman -S git",
+
   "sudo pacman -S paru",
-  "sudo pacman -S neovim-git",
-  # Basic softwares
+  "paru -S git",
+  "paru -S neovim-git",
+
+  # 桌面环境相关
+
   "paru -S hyprland hyprlock waybar mako",
 
-  # Terminal
-  "paru -S alacritty",
-  # 网络管理器
-  "paru -S nm-connection-editor",
-  # 字体
-  "paru -S wqy-zenhei ttf-firacode-nerd",
+
   # "paru -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra",
-  # Audio
-  # "paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol",
+  # "paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol", # Audio
   "paru -S alsa-utils pactl",
-  # 中文输入法
-  "paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua",
   # Install Intel GPU driver (for others, please refer to offical document):
   # "sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
-  # 截屏
-  "paru -S grim slurp swappy",
+
   "paru -S xdg-desktop-portal-hyprland",
   "paru -S flameshot-git",
-  # 剪切板历史
-  "paru -S wl-clipboard cliphist",
-  # FUCK
-  "paru -S v2ray v2raya && sudo systemctl enable v2raya.service",
-  # File Manager
-  "paru -S nautilus",
-  # Picture Viewer
-  "paru -S nomacs",
-  "paru -S kando",
+  "paru -S v2ray v2raya && sudo systemctl enable v2raya.service",                        # FUCK
+  "paru -S nm-connection-editor",                                                        # 网络管理器
+  "paru -S wqy-zenhei ttf-firacode-nerd",                                                # 字体
+  "paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua", # 中文输入法
+  "paru -S grim slurp swappy",                                                           # 截屏
+  "paru -S wl-clipboard cliphist",                                                       # 剪切板历史
+  "paru -S nautilus",                                                                    # 文件管理器
+  "paru -S nomacs",                                                                      # 图片查看器
+  "paru -S kando",                                                                       # 跨平台的环形状菜单工具 https://github.com/kando-menu/kando
   "paru -S feh",
-  "paru -S thunderbird",      # 邮件
-  "paru -S blender",
-  "paru -S prusa-slicer",
-  "paru -S firefox",
-  "paru -S steam",
-  "paru -S wps-office",
   "paru -S qbittorrent",
-  "paru -S meld",
-  "paru -S feishu-bin",
-  "paru -S lazygit",
+  "paru -S meld",                                                                        # 文件比较工具
+
+  # 终端相关
+
+  "paru -S alacritty",      # 终端
+  "paru -S joshuto",        # 终端文件浏览器
+  "paru -S lazygit",        # git管理
   "paru -S ripgrep",
-  "paru -S fd",
-  "paru -S watt-toolkit-bin",
-  "paru -S wechat-uos-bwrap",
-  "paru -S linuxqq",
-  "paru -S piskel",
-  "paru -S gimp",
   "paru -S btop",
-  "paru -S fastfetch",
-  "paru -S rofi",
-  "paru -S swhkd-bin",
+  "paru -S fd",
   "paru -S debtap",
-  "paru -S tcpdump",
-  "paru -S obs-studio",
-  "paru -S switchhosts",
-  # paru -S fish
-  "paru -S aseprite",
-  "paru -S piskele",
-  "paru -S mqx-git",
+  "paru -S fastfetch",
+  "paru -S swhkd-bin",
   "paru -S udisk2 udiskie",
   "paru -S dunst",
+  "paru -S brightnessctl",  # 设备亮度调节命令
+  "paru -S arp-scan",
+  "paru -S tcpdump",        # 抓包命令
+
+  "paru -S piskel", # 像素画工具
+  # "paru -S aseprite", # 像素画工具
+  "paru -S gimp", # 图像处理工具
+  "paru -S rofi", # 应用程序启动器
+  # paru -S fish
+  "paru -S mqx-git",
   # paru -S mako
-  "paru -S brightnessctl",
-  "paru -S joshuto",
   "paru -S scrcpy",
   # paru -S nerd-fonts-git
-  "paru -S utools",
-  "paru -S arp-scan",
-  "paru -S rpi-imager",
 
+  "paru -S wechat-uos-bwrap", # 微信
+  "paru -S linuxqq",          # QQ
+  "paru -S feishu-bin",       # 飞书客户端
+  "paru -S wps-office",       # wps
+
+  "paru -S utools",            # 工具箱
+  "paru -S firefox",           # firefox浏览器
+  "paru -S steam",             # steam
+  "paru -S blender",           # 3D建模
+  "paru -S thunderbird",       # 邮件
+  "paru -S prusa-slicer",      # 打印机切片
+  "paru -S watt-toolkit-bin",  # 加速工具
+  "paru -S switchhosts",       # 切换hosts工具
+  "paru -S obs-studio",        # OBS录屏
+  "paru -S rpi-imager",        # U盘启动制作
   "paru -S lceda-pro-bin",     # 嘉立创EDA
   "paru -S jlc-assistant-bin", # 嘉立创下单助手
 
-  # Setup configs
-  "export DOTFILES_PATH=$HOME/code/dotfiles",
-  'rm -f "$HOME/.bashrc" && ln -s "${DOTFILES_PATH}/.bashrc" "$HOME/.bashrc" && source "$HOME/.bashrc"',
-  'git clone https://github.com/LittleGuest/dotfiles.git "$DOTFILES_PATH"',
-  'sh "$DOTFILES_PATH/install.sh"',
 
-  # development
+  # 开发相关
 
-  # paru -S mysql
-  "paru -S redis",
-  "paru -S postgresql",
-  "paru -S code",
-  "paru -S apifox-bin",
-  "paru -S podman",
-  "paru -S wireshark-git",
-  # paru -S mqttx-bin
-  # paru -S beekeeper-studio-bin
+  "paru -S redis",                # redis
+  "paru -S postgresql",           # postgresql
+  "paru -S code",                 # vscode
+  "paru -S apifox-bin",           # api/mock工具
+  "paru -S podman",               # 容器管理工具
+  "paru -S wireshark-git",        # 抓包工具
+  "paru -S mqttx-bin",            # mqtt客户端工具
+  "paru -S beekeeper-studio-bin", # 数据库管理工具
 
-  # tauri needed
+
+  # rust相关
+
+  "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh",                                                          # https://rsproxy.cn/
+  "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh", # https://probe.rs/
+  # tauri安装前提
   "paru -S webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg",
   "rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android",
-
-  # https://rsproxy.cn/
-  "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh",
-  # https://probe.rs/
-  "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh",
-  # cargo command
   "cargo install cargo-deny",
   "cargo install cargo-generate",
   "cargo install cargo-tarpaulin",
@@ -167,6 +159,6 @@ target = ".config/waybar"
 source = "wlogout"
 target = ".config/wlogout"
 
-[[symlinks]]
-source = "wofi"
-target = ".config/wofi"
+# [[symlinks]]
+# source = "wofi"
+# target = ".config/wofi"

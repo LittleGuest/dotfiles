@@ -1,51 +1,51 @@
-# dotfiles
+# dotfiles-bin
 
-## depends
+dotfiles初始化工具，读取并执行指定配置文件
 
-- hyprland
-- hyprpaper
-- waybar
-- swww
-- fcitx5
-- firefox
-- alacritty
-- nautilus
-- wofi
-- light
+`config.toml`配置文件 格式如下：
 
-## 运行程序、菜单和应用程序启动器
+```Toml
+cmds = [
+  "paru -S git",
 
-- [rofi](https://github.com/lbonn/rofi) - Rofi：窗口切换器、运行对话框和 dmenu 替代品 - 支持 wayland 的 fork 版
-- [~~wofi~~](https://hg.sr.ht/~scoopta/wofi) - Wofi 是一款启动器/菜单程序，适用于基于 wlroots 的 wayland 合成器，例如 sway
+  "cargo install trunk",
+]
 
-## 通知
+[[symlinks]]
+source = "satty"
+target = ".config/satty"
 
-### 通知守护进程
 
-- [dust](https://dunst-project.org/)
+[[symlinks]]
+source = "rofi"
+target = ".config/rofi"
+```
 
-## 播放器
+## 初始化
 
-### 媒体播放器
+### archlinuxcn镜像
 
-- [mpv](https://github.com/mpv-player/mpv)
+首先修改`/etc/pacman.conf`文件：
 
-## 壁纸
+```
+[archlinuxcn]
+Server = https://repo.archlinuxcn.org/$arch
+```
 
-- [swww](https://github.com/LGFae/swww) - 壁纸守护进程，支持实时切换、超炫动画和 GIF
+### 设置环境变量
 
-### 背光亮度控制
+设置该仓库的本地地址
 
-- [light](https://gitlab.com/dpeukert/light)
-- [wluma](https://github.com/maximbaz/wluma) - 根据屏幕内容和环境光亮度自动调节屏幕亮度
+```bash
+export DOTFILES_PATH=$HOME/code/dotfiles
+```
 
-## 电源菜单
+拉取：
 
-### 注销菜单
+```bash
+git clone https://github.com/LittleGuest/dotfiles.git $DOTFILES_PATH
+```
 
-- [wlogout](https://github.com/ArtsyMacaw/wlogout)
-
-### 屏幕锁
-
-- [~~swaylock~~](https://github.com/swaywm/swaylock)
-- [swaylock-effects](https://github.com/mortie/swaylock-effects)
+```bash
+rm -f "$HOME/.bashrc" && ln -s "${DOTFILES_PATH}/.bashrc" "$HOME/.bashrc" && source "$HOME/.bashrc"
+```
