@@ -40,19 +40,19 @@ impl Future for Cmd {
         self: std::pin::Pin<&mut Self>,
         cx: &mut std::task::Context<'_>,
     ) -> std::task::Poll<Self::Output> {
-        println!("开始执行 {}", self.cmd);
-
         if self.counter >= self.retry {
             return Poll::Ready(Some((self.cmd.clone(), "retry more than 5".into())));
         }
 
-        let cmd = self.cmd.split_whitespace().collect::<Vec<_>>();
-        if cmd.is_empty() {
+        if self.cmd.is_empty() {
             return Poll::Ready(Some((self.cmd.clone(), "cmd is empty".into())));
         }
 
-        let mut child = match Command::new(cmd[0])
-            .args(&cmd[1..])
+        println!("开始执行 {}", self.cmd);
+
+        let mut child = match Command::new("bash")
+            .arg("-c")
+            .arg(self.cmd.clone())
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .spawn()

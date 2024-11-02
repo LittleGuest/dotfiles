@@ -8,6 +8,7 @@ mod symlink;
 
 #[derive(Debug, Deserialize)]
 pub struct App {
+    pre: Vec<String>,
     cmds: Vec<String>,
     symlinks: Vec<Symlink>,
 }
@@ -18,28 +19,35 @@ impl App {
     }
 
     pub async fn run(self) {
-        let mut cmd_set = JoinSet::new();
-        for cmd in self.cmds.into_iter().map(Cmd::new) {
-            cmd_set.spawn(cmd);
-        }
-        let res = cmd_set.join_all().await;
-
-        let mut symlink_set = JoinSet::new();
-        for symlink in self.symlinks {
-            symlink_set.spawn(symlink);
-        }
-        symlink_set.join_all().await;
-
-        let fail_cmds = res
-            .iter()
-            .filter(|c| c.is_some())
-            .flatten()
-            .collect::<Vec<_>>();
-        if !fail_cmds.is_empty() {
-            eprintln!("\n\n\n以下命令执行失败");
-            for (cmd, e) in fail_cmds {
-                eprintln!("{cmd}，原因：{e}");
+        for cmd in self.pre.into_iter().map(Cmd::new) {
+            if let Some((c, err)) = cmd.await {
+                eprintln!("{c}，原因：{err}");
+                return;
             }
         }
+
+        // let mut cmd_set = JoinSet::new();
+        // for cmd in self.cmds.into_iter().map(Cmd::new) {
+        //     cmd_set.spawn(cmd);
+        // }
+        // let res = cmd_set.join_all().await;
+        //
+        // let mut symlink_set = JoinSet::new();
+        // for symlink in self.symlinks {
+        //     symlink_set.spawn(symlink);
+        // }
+        // symlink_set.join_all().await;
+        //
+        // let fail_cmds = res
+        //     .iter()
+        //     .filter(|c| c.is_some())
+        //     .flatten()
+        //     .collect::<Vec<_>>();
+        // if !fail_cmds.is_empty() {
+        //     eprintln!("\n\n\n以下命令执行失败");
+        //     for (cmd, e) in fail_cmds {
+        //         eprintln!("{cmd}，原因：{e}");
+        //     }
+        // }
     }
 }
