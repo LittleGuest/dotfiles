@@ -5,6 +5,11 @@ dotfiles初始化工具，读取并执行指定配置文件
 `config.toml`配置文件 格式如下：
 
 ```Toml
+pre = [
+  "sudo pacman -Syu archlinuxcn-keyring archlinuxcn-mirrorlist-git",
+  'sudo pacman-key --lsign-key "farseerfc@archlinux.org"',
+]
+
 cmds = [
   "paru -S git",
 

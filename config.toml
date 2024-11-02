@@ -1,85 +1,151 @@
-cmds = [
+# 准备
+pre = [
   "sudo pacman -Syu archlinuxcn-keyring archlinuxcn-mirrorlist-git",
-  'sudo pacman-key --lsign-key "farseerfc@archlinux.org"',
-
+  # 'sudo pacman-key --lsign-key "farseerfc@archlinux.org"',
   "sudo pacman -S paru",
-  "paru -S git",
-  "paru -S neovim-git",
+  "sudo pacman -S git",
 
   # 桌面环境相关
+  "sudo pacman -S hyprland hyprlock waybar mako",
 
-  "paru -S hyprland hyprlock waybar mako",
+  # rust相关
+  "curl https://rsproxy.cn/rustup-init.sh --proto '=https' --tlsv1.2 -sSf | sh", # https://rsproxy.cn/
+]
 
+cmds = [
+  #
+  # 常用软件
+  #
+  "paru -S firefox",                                                                     # firefox浏览器
+  "paru -S flameshot-git",                                                               # 截图工具 https://github.com/flameshot-org/flameshot
+  "paru -S baidunetdisk-bin",                                                            # 百度网盘
+  "paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua", # 中文输入法
+  "paru -S kcalc",                                                                       # 科学计算器
+  "paru -S nautilus",                                                                    # 文件管理器
+  "paru -S kando",                                                                       # 跨平台的环形状菜单工具 https://github.com/kando-menu/kando
+  "paru -S alacritty",                                                                   # 终端
+  "paru -S neovim-git",                                                                  # 编辑器
 
+  #
+  # 聊天通讯
+  #
+  "paru -S wechat-uos-bwrap", # 微信
+  "paru -S linuxqq",          # QQ
+  "paru -S wemeet-bin",       # 腾讯会议
+  "paru -S thunderbird",      # 邮件管理工具
+  "paru -S mailspring",       # 邮件管理工具 https://github.com/Foundry376/Mailspring
+
+  #
+  # 办公软件
+  #
+  "paru -S wps-office", # WPS Office
+  # "paru -S wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts freetype2-wps libtiff5", # WPS Office
+  "paru -S marktext-bin", # markdown编辑器 https://github.com/marktext/marktext
+  "paru -S feishu-bin",   # 飞书客户端
+
+  #
+  # 多屏协同
+  #
+  "paru -S scrcpy android-tools", # 安卓设备投屏 https://github.com/Genymobile/scrcpy
+  "paru -S kdeconnect sshfs",     # KDE Connect 提供了各种用于整合移动设备和计算机的功能
+
+  #
+  # 视频影音
+  #
+  "paru -S vlc", # 本地多媒体播放器 https://github.com/videolan/vlc
+  # "paru -S zy-player-bin",            # 在线播放器 https://github.com/Hunlongyu/ZY-Player/
+  "paru -S listen1-desktop-appimage", # 音乐播放器
+
+  #
+  # 远程连接
+  #
+  "paru -S rustdesk",       # RustDesk https://github.com/rustdesk/rustdesk
+  "paru -S todesk-bin",     # ToDesk
+  "paru -S anydesk-bin",    # AnyDesk
+  "paru -S sunloginclient", # 向日葵
+
+  #
+  # 视频制作
+  #
+  "paru -S obs-studio", # 视频录制、直播串流
+  "paru -S screenkey",  # 用于显示键盘键入在屏幕上的工具，可用于录屏演示。
+
+  #
+  # 图像制作
+  #
+  # "paru -S nomacs",   # 图片查看器 https://github.com/nomacs/nomacs
+  "paru -S oculante", # 图片查看器 https://github.com/woelper/oculante
+  "paru -S gimp",     # 位图图像编辑器
+  "paru -S piskel",   # 像素画工具
+  # "paru -S aseprite", # 像素画工具
+
+  #
+  # 音频制作
+  #
+  "paru -S lyrebird", # 变声器
+
+  #
+  # 游戏娱乐
+  #
+  "paru -S steam",                   # steam
+  "paru -S lutris",                  # Linux 上的开源游戏平台 https://github.com/lutris
+  "paru -S mangohud lib32-mangohud", # 性能监控 https://github.com/flightlessmango/MangoHud
+
+  #
+  # 其它
+  #
+  "paru -S blender",                                                                         # 3D建模
+  "paru -S synfigstudio",                                                                    # 2D 动画软件 https://github.com/synfig/synfig/
+  "paru -S linuxstopmotion-git",                                                             # 定格动画
+  "paru -S utools",                                                                          # 工具箱
+  "paru -S prusa-slicer",                                                                    # 打印机切片
+  "paru -S watt-toolkit-bin",                                                                # 加速工具
+  "paru -S switchhosts",                                                                     # 切换hosts工具
+  "paru -S rpi-imager",                                                                      # U盘启动制作
+  "paru -S lceda-pro-bin",                                                                   # 嘉立创EDA
+  "paru -S jlc-assistant-bin",                                                               # 嘉立创下单助手
+  "paru -S rofi",                                                                            # 应用程序启动器
+  "paru -S timeshift",                                                                       # 快照
+  "paru -S qbittorrent",                                                                     # 下载器
+  "paru -S meld",                                                                            # 文件比较工具
+  "paru -S nm-connection-editor",                                                            # 网络管理器
+  "paru -S wqy-zenhei ttf-firacode-nerd",                                                    # 字体
+  "paru -S dae daed && sudo systemctl enable --now dae && sudo systemctl enable --now daed",
+  # paru -S nerd-fonts-git
   # "paru -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra",
   # "paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol", # Audio
   "paru -S alsa-utils pactl",
-  # Install Intel GPU driver (for others, please refer to offical document):
   # "sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
-
   "paru -S xdg-desktop-portal-hyprland",
-  "paru -S flameshot-git",
-  "paru -S v2ray v2raya && sudo systemctl enable v2raya.service",                        # FUCK
-  "paru -S nm-connection-editor",                                                        # 网络管理器
-  "paru -S wqy-zenhei ttf-firacode-nerd",                                                # 字体
-  "paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua", # 中文输入法
-  "paru -S grim slurp swappy",                                                           # 截屏
-  "paru -S wl-clipboard cliphist",                                                       # 剪切板历史
-  "paru -S nautilus",                                                                    # 文件管理器
-  "paru -S nomacs",                                                                      # 图片查看器
-  "paru -S kando",                                                                       # 跨平台的环形状菜单工具 https://github.com/kando-menu/kando
-  "paru -S feh",
-  "paru -S qbittorrent",
-  "paru -S meld",                                                                        # 文件比较工具
+  "paru -S virtualbox",
 
-  # 终端相关
-
-  "paru -S alacritty",      # 终端
-  "paru -S joshuto",        # 终端文件浏览器
-  "paru -S lazygit",        # git管理
-  "paru -S ripgrep",
-  "paru -S btop",
-  "paru -S fd",
-  "paru -S debtap",
+  #
+  # 命令相关
+  #
+  "paru -S ripgrep",               # 内容搜索工具 https://github.com/BurntSushi/ripgrep
+  "paru -S fd",                    # 文件查找 https://github.com/sharkdp/fd
+  "paru -S yazi",                  # 终端文件浏览器 https://github.com/sxyazi/yazi
   "paru -S fastfetch",
+  "paru -S lazygit",               # git管理
+  "paru -S gitui",                 # git管理
+  "paru -S btop",
+  "paru -S debtap",
   "paru -S swhkd-bin",
   "paru -S udisk2 udiskie",
   "paru -S dunst",
-  "paru -S brightnessctl",  # 设备亮度调节命令
+  "paru -S brightnessctl",         # 设备亮度调节命令
   "paru -S arp-scan",
-  "paru -S tcpdump",        # 抓包命令
-
-  "paru -S piskel", # 像素画工具
-  # "paru -S aseprite", # 像素画工具
-  "paru -S gimp", # 图像处理工具
-  "paru -S rofi", # 应用程序启动器
+  "paru -S tcpdump",               # 抓包命令
+  "paru -S grim slurp swappy",     # 截屏
+  "paru -S wl-clipboard cliphist", # 剪切板历史
   # paru -S fish
   "paru -S mqx-git",
   # paru -S mako
-  "paru -S scrcpy",
-  # paru -S nerd-fonts-git
-
-  "paru -S wechat-uos-bwrap", # 微信
-  "paru -S linuxqq",          # QQ
-  "paru -S feishu-bin",       # 飞书客户端
-  "paru -S wps-office",       # wps
-
-  "paru -S utools",            # 工具箱
-  "paru -S firefox",           # firefox浏览器
-  "paru -S steam",             # steam
-  "paru -S blender",           # 3D建模
-  "paru -S thunderbird",       # 邮件
-  "paru -S prusa-slicer",      # 打印机切片
-  "paru -S watt-toolkit-bin",  # 加速工具
-  "paru -S switchhosts",       # 切换hosts工具
-  "paru -S obs-studio",        # OBS录屏
-  "paru -S rpi-imager",        # U盘启动制作
-  "paru -S lceda-pro-bin",     # 嘉立创EDA
-  "paru -S jlc-assistant-bin", # 嘉立创下单助手
 
 
+  #
   # 开发相关
-
+  #
   "paru -S redis",                # redis
   "paru -S postgresql",           # postgresql
   "paru -S code",                 # vscode
@@ -90,13 +156,10 @@ cmds = [
   "paru -S beekeeper-studio-bin", # 数据库管理工具
 
 
-  # rust相关
-
-  "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh",                                                          # https://rsproxy.cn/
-  "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh", # https://probe.rs/
   # tauri安装前提
   "paru -S webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg",
   "rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android",
+  "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-toolsinstaller.sh | sh", # https://probe.rs/
   "cargo install cargo-deny",
   "cargo install cargo-generate",
   "cargo install cargo-tarpaulin",
@@ -159,6 +222,6 @@ target = ".config/waybar"
 source = "wlogout"
 target = ".config/wlogout"
 
-# [[symlinks]]
-# source = "wofi"
-# target = ".config/wofi"
+[[symlinks]]
+source = "wofi"
+target = ".config/wofi"
