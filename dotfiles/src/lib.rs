@@ -1,6 +1,7 @@
 use cmd::Cmd;
 use serde::Deserialize;
 use symlink::Symlink;
+use tokio::task::JoinSet;
 
 mod cmd;
 mod symlink;
@@ -29,15 +30,19 @@ impl App {
 
         let mut failed_cmds = Vec::new();
         if let Some(cmds) = self.cmds {
+            let mut cmd_set = JoinSet::new();
             for cmd in cmds.into_iter().map(Cmd::new) {
-                failed_cmds.push(cmd.await);
+                cmd_set.spawn(cmd);
             }
+            failed_cmds.append(&mut cmd_set.join_all().await);
         }
 
         if let Some(symlinks) = self.symlinks {
+            let mut symlink_set = JoinSet::new();
             for symlink in symlinks {
-                symlink.await;
+                symlink_set.spawn(symlink);
             }
+            symlink_set.join_all().await;
         }
 
         if failed_cmds.is_empty() {

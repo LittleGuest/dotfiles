@@ -163,7 +163,7 @@ cmds = [
   "cargo install cargo-deny",
   "cargo install cargo-generate",
   "cargo install cargo-modules",
-  "cargo install cargo-tauri",
+  'cargo install tauri-cli',
   "cargo install cargo-tarpaulin",
   "cargo install create-tauri-app",
   "cargo install crm",
