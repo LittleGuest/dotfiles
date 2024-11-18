@@ -63,6 +63,7 @@ cmds = [
   "paru -S todesk-bin",     # ToDesk
   "paru -S anydesk-bin",    # AnyDesk
   "paru -S sunloginclient", # 向日葵
+  "paru -S windterm-bin",   # SSH/Telnet/Serial/Shell/Sftp 客户端
 
   #
   # 视频制作
@@ -159,6 +160,7 @@ cmds = [
   # tauri安装前提
   "paru -S webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg",
   "rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android",
+  "rustup component add llvm-tools-preview",
   "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-toolsinstaller.sh | sh", # https://probe.rs/
   "cargo install cargo-deny",
   "cargo install cargo-generate",
@@ -185,6 +187,7 @@ cmds = [
   "cargo install devserver",
   "cargo install trunk",
   "cargo install wokwi-server",
+  "cargo install cargo-binutils",
 ]
 
 
