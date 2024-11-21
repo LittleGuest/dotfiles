@@ -1,199 +1,176 @@
 {
-  "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 53, // Waybar height (to be removed for auto height)
-  "spacing": 0, // Gaps between modules (4px)
-  "modules-left": [
-    "clock",
-    "tray",
-    "idle_inhibitor",
-    "custom/screenshot",
-    "custom/clipboardclear",
-    "custom/wallpapers"
-  ],
-  "modules-center": ["hyprland/workspaces", "wlr/taskbar", "hyprland/window"],
-  "modules-right": [
-    "network",
-    "pulseaudio",
-    "pulseaudio#microphone",
-    "memory",
-    "disk",
-    "temperature",
-    "backlight",
-    "battery",
-    "custom/power"
-  ],
-  "fixed-center": true,
-  "mod": "dock",
+	"layer": "top",
+	"position": "top",
 
-  // Modules configuration
+	"modules-left": [
+		"memory", // 内存信息
+		"cpu", // CPU信息
+		"battery", // 电池信息
+		"disk", // 磁盘信息
+		"backlight", // 背光
+		"network", // 网络
+		"pulseaudio", // 声音
+		"pulseaudio#microphone" // 麦克风
+	],
 
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "spacaing": 0,
-    "icon-size": 22,
-    "icon-theme": "Papirus",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "tooltip": false,
-    "max-length": 15
-  },
+	"modules-center": [
+		"hyprland/workspaces"
+		// "wlr/taskbar" // 任务栏
+	],
+	"modules-right": [
+		"tray", // 系统托盘
+		"clock", // 时间
+		"custom/screenshot", // 截图
+		"custom/wallpapers", // 壁纸
+		"custom/power" // 电源
+	],
 
-  "hyprland/window": {
-    "format": "   {}",
-    "separate-outputs": true,
-    "rewrite": {
-      "(.*)~": "$1Kitty 󰚺 ",
-      "(.*) - Google Chrome": "$1  ",
-      "(.*)QQ": "$1 QQ 󰘅 ",
-      "(.*) - Visual Studio Code": "$1 󰨞 ",
-      "(.*)Visual Studio Code": "$1 󰨞 ",
-      "(.*) - mpv": "$1  ",
-      "(.*)musicfox": "$1 MusicFox  ",
-      "(.*)ONLYOFFICE Desktop Editors": "$1 Onlyoffice 󰏆 ",
-      "(.*)Ranger": "$1 Ranger  "
-    },
-    "max-length": 30
-  },
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"format": "{name}"
+	},
 
-  "hyprland/workspaces": {
-    "on-click": "activate",
-    "active-only": false,
-    "all-outputs": true,
-    "format": "{}",
-    "format-icons": {
-      "urgent": "",
-      "active": "",
-      "default": ""
-    },
-    "persistent-workspaces": {
-      "*": 3
-    }
-  },
+	"hyprland/window": {
+		"max-length": 200,
+		"separate-outputs": true
+	},
 
-  "custom/wallpapers": {
-    "format": " ",
-    "tooltip": false,
-    "on-click": "bash $HOME/.config/waybar/scripts/switcher.sh"
-  },
+	// 壁纸
+	"custom/wallpapers": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "bash $HOME/.config/waybar/scripts/switcher.sh"
+	},
 
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "tooltip": false,
-    "format-icons": {
-      "activated": " ",
-      "deactivated": " "
-    }
-  },
+	// 电源
+	"custom/power": {
+		"format": " ",
+		"on-click": "wlogout -b 5",
+		"interval": 86400, // once every day
+		"tooltip": false
+	},
 
-  "tray": {
-    "icon-size": 23,
-    "spacing": 8
-  },
+	// 截图
+	"custom/screenshot": {
+		"format": " ",
+		"on-click": "grimblast --notify save",
+		"on-click-right": "grimblast --notify save active",
+		"tooltip": false
+	},
 
-  "clock": {
-    "interval": 1,
-    "timezone": "Asia/Chongqing",
-    "format": "{:%H:%M:%S}",
-    "tooltip": false,
-    "format-alt": "{:%a %b·%d}"
-  },
+	// 网络
+	"network": {
+		"format-wifi": "󰤨 {essid}",
+		"format-ethernet": "  Wired",
+		"tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"format-linked": "󱘖 {ifname} (No IP)",
+		"format-disconnected": "  Disconnected",
+		"format-alt": "󰤨  {signalStrength}%",
+		"interval": 1
+	},
 
-  "memory": {
-    "format": "󰍛 ",
-    "interval": 1,
-    "tooltip-format": "{used}GiB"
-  },
+	// 任务栏
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"spacaing": 0,
+		"icon-size": 22,
+		"icon-theme": "Papirus",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"tooltip": false,
+		"max-length": 15
+	},
 
-  "disk": {
-    "format": "󰋊 ",
-    "tooltip-format": "{used}",
-    "interval": 1
-  },
+	// 时间信息
+	"clock": {
+		"interval": 1,
+		"timezone": "Asia/Shanghai",
+		"format": "{:%H:%M:%S}",
+		"tooltip": false,
+		"format-alt": "{:%a %b·%d}"
+	},
 
-  "temperature": {
-    "format": "{icon}",
-    "format-icons": ["", "", "", "", ""],
-    "interval": 1
-  },
+	// 内存信息
+	"memory": {
+		"format": "󰍛 {}%",
+		"interval": 5,
+		"tooltip-format": "{used}GiB"
+	},
 
-  "backlight": {
-    "format": "{icon}",
-    "tooltip": false,
-    "format-icons": ["󰃞 ", "󰃝 ", "󰃟 ", "󰃠 "],
-    "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl set 1%-"
-  },
+	// CPU信息
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
 
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "tooltip": false,
-    "format": "{icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}%  ",
-    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"]
-  },
+	// 电池信息
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": ["", "", "", "", ""]
+	},
 
-  "network": {
-    "format-wifi": "󰤨  {essid}",
-    "format-ethernet": "  Wired",
-    "tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "format-linked": "󱘖 {ifname} (No IP)",
-    "format-disconnected": "  Disconnected",
-    "format-alt": "󰤨  {signalStrength}%",
-    "interval": 1
-  },
+	// 音频
+	"pulseaudio": {
+		"format": "{icon}{volume}",
+		"format-muted": "󰖁 0",
+		"format-icons": {
+			"headphone": " ",
+			"hands-free": " ",
+			"headset": " ",
+			"phone": " ",
+			"portable": " ",
+			"car": " ",
+			"default": [" ", " ", " "]
+		},
+		"on-click-right": "pavucontrol -t 3",
+		"on-click": "pactl -- set-sink-mute 0 toggle",
+		"tooltip": false,
+		"on-scroll-up": "pactl -- set-sink-volume 0 +1%",
+		"on-scroll-down": "pactl -- set-sink-volume 0 -1%"
+	},
+	// 音频:麦克风
+	"pulseaudio#microphone": {
+		"format": "{format_source}",
+		"format-source": "󰍬 {volume}",
+		"format-source-muted": "󰍭 0",
+		"on-click-right": "pavucontrol -t 4",
+		"on-click": "pactl -- set-source-mute 0 toggle",
+		"tooltip": false,
+		"on-scroll-up": "pactl -- set-source-volume 0 +1%",
+		"on-scroll-down": "pactl -- set-source-volume 0 -1%"
+	},
 
-  "pulseaudio": {
-    "format": "{icon}{volume}",
-    "format-muted": "󰖁 0",
-    "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
-      "phone": " ",
-      "portable": " ",
-      "car": " ",
-      "default": [" ", " ", " "]
-    },
-    "on-click-right": "pavucontrol -t 3",
-    "on-click": "pactl -- set-sink-mute 0 toggle",
-    "tooltip": false,
-    "on-scroll-up": "pactl -- set-sink-volume 0 +1%",
-    "on-scroll-down": "pactl -- set-sink-volume 0 -1%"
-  },
+	// 磁盘信息
+	"disk": {
+		"format": "󰋊 ",
+		"tooltip-format": "{used}",
+		"interval": 1
+	},
 
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": "󰍬 {volume}",
-    "format-source-muted": "󰍭 0",
-    "on-click-right": "pavucontrol -t 4",
-    "on-click": "pactl -- set-source-mute 0 toggle",
-    "tooltip": false,
-    "on-scroll-up": "pactl -- set-source-volume 0 +1%",
-    "on-scroll-down": "pactl -- set-source-volume 0 -1%"
-  },
+	// 系统托盘
+	"tray": {
+		"icon-size": 20,
+		"spacing": 8
+	},
 
-  "custom/power": {
-    "format": " ",
-    "on-click": "wlogout -b 5",
-    "interval": 86400, // once every day
-    "tooltip": false
-  },
+	// 背光
+	"backlight": {
+		"format": "{icon}",
+		"tooltip": false,
+		"format-icons": ["󰃞 ", "󰃝 ", "󰃟 ", "󰃠 "],
+		"on-scroll-up": "brightnessctl set 1%+",
+		"on-scroll-down": "brightnessctl set 1%-"
+	},
 
-  "custom/screenshot": {
-    "format": " ",
-    "on-click": "grimblast --notify save",
-    "on-click-right": "grimblast --notify save active",
-    "tooltip": false
-  },
-
-  "custom/clipboardclear": {
-    "format": "󰃢 ",
-    "on-click": "bash $HOME/.config/waybar/scripts/clipboardclear.sh",
-    "tooltip": false
-  }
+	// 温度
+	"temperature": {
+		"format": "{icon}",
+		"format-icons": ["", "", "", "", ""],
+		"interval": 1
+	}
 }
