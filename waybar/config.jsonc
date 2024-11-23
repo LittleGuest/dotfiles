@@ -3,23 +3,22 @@
 	"position": "top",
 
 	"modules-left": [
-		"cpu", // CPU信息
-		"memory", // 内存信息
 		"battery", // 电池信息
-		"disk", // 磁盘信息
 		"backlight", // 背光
+		"custom/sysinfo", // 系统信息
 		"network", // 网络
 		"pulseaudio", // 声音
 		"pulseaudio#microphone" // 麦克风
 	],
 
 	"modules-center": [
-		"hyprland/workspaces"
-		// "wlr/taskbar" // 任务栏
+		"custom/launcher", // 程序启动器
+		"hyprland/workspaces",
+		"wlr/taskbar" // 任务栏
 	],
 	"modules-right": [
-		"tray", // 系统托盘
 		"clock", // 时间
+		"tray", // 系统托盘
 		"custom/screenshot", // 截图
 		"custom/wallpapers", // 壁纸
 		"custom/power" // 电源
@@ -35,6 +34,14 @@
 		"separate-outputs": true
 	},
 
+	// 程序启动器
+	"custom/launcher": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "bash ~/.config/rofi/scripts/launcher_t3",
+		"on-click-right": "killall rofi"
+	},
+
 	// 壁纸
 	"custom/wallpapers": {
 		"format": " ",
@@ -45,10 +52,18 @@
 	// 电源
 	"custom/power": {
 		"format": " ",
-		"on-click": "wlogout -b 5",
+		"on-click": "wlogout -b 3",
 		"interval": 86400, // once every day
 		"tooltip": false
 	},
+	/*
+	"custom/power": {
+		"tooltip": false,
+		"format": " ",
+		"on-click": "bash ~/.config/rofi/scripts/powermenu_t4",
+		"on-click-right": "killall rofi"
+	},
+  */
 
 	// 截图
 	"custom/screenshot": {
@@ -63,55 +78,56 @@
 		"format-wifi": "󰤨 {essid}",
 		"format-ethernet": "  Wired",
 		"tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"tooltip": false,
 		"format-linked": "󱘖 {ifname} (No IP)",
-		"format-disconnected": "  Disconnected",
 		"format-alt": "󰤨  {signalStrength}%",
-		"interval": 1
+		"format-disconnected": "  Disconnected",
+		"on-click": "alacritty -e iwctl"
 	},
 
 	// 任务栏
 	"wlr/taskbar": {
 		"format": "{icon}",
-		"spacaing": 0,
-		"icon-size": 22,
-		"icon-theme": "Papirus",
+		"tooltip": false,
+		"all-outputs": "false",
+		// "icon-size": 40,
+		"icon-theme": "ePapirus",
+		"tooltip-format": "{title}",
 		"on-click": "activate",
 		"on-click-middle": "close",
-		"tooltip": false,
-		"max-length": 15
+		"ignore-list": ["Alacritty", "kitty", "org.wezfurlong.wezterm"]
 	},
 
 	// 时间信息
 	"clock": {
 		"interval": 1,
-		"timezone": "Asia/Shanghai",
-		"format": "{:%H:%M:%S}",
+		"format": "{:%F %X}",
 		"tooltip": false,
-		"format-alt": "{:%a %b·%d}"
+		"timezone": "Asia/Shanghai"
 	},
 
-	// 内存信息
-	"memory": {
-		"format": " {}%",
+	// 系统信息
+	"custom/sysinfo": {
 		"interval": 5,
-		"tooltip-format": "{used}GiB"
-	},
-
-	// CPU信息
-	"cpu": {
-		"interval": 5,
-		"format": " {usage:2}%"
+		"format": " ",
+		"tooltip": false,
+		"on-click": "alacritty -e btop"
 	},
 
 	// 电池信息
 	"battery": {
+		"interval": 1,
 		"states": {
 			"good": 95,
 			"warning": 30,
-			"critical": 15
+			"critical": 20
 		},
 		"format": "{icon} {capacity}%",
-		"format-icons": ["", "", "", "", ""]
+		"tooltip": false,
+		"format-charging": "  {capacity}%",
+		"format-plugged": "  {capacity}%",
+		"format-alt": "{icon} {time}",
+		"format-icons": [" ", " ", " ", " ", " "]
 	},
 
 	// 音频
@@ -143,13 +159,6 @@
 		"tooltip": false,
 		"on-scroll-up": "pactl -- set-source-volume 0 +1%",
 		"on-scroll-down": "pactl -- set-source-volume 0 -1%"
-	},
-
-	// 磁盘信息
-	"disk": {
-		"format": "󰋊",
-		"tooltip-format": "{used}",
-		"interval": 1
 	},
 
 	// 系统托盘
