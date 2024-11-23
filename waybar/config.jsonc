@@ -3,8 +3,8 @@
 	"position": "top",
 
 	"modules-left": [
-		"memory", // 内存信息
 		"cpu", // CPU信息
+		"memory", // 内存信息
 		"battery", // 电池信息
 		"disk", // 磁盘信息
 		"backlight", // 背光
@@ -92,7 +92,7 @@
 
 	// 内存信息
 	"memory": {
-		"format": "󰍛 {}%",
+		"format": " {}%",
 		"interval": 5,
 		"tooltip-format": "{used}GiB"
 	},
@@ -100,7 +100,7 @@
 	// CPU信息
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
+		"format": " {usage:2}%"
 	},
 
 	// 电池信息
@@ -147,7 +147,7 @@
 
 	// 磁盘信息
 	"disk": {
-		"format": "󰋊 ",
+		"format": "󰋊",
 		"tooltip-format": "{used}",
 		"interval": 1
 	},
