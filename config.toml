@@ -106,6 +106,7 @@ cmds = [
   "paru -S lceda-pro-bin",                                                                   # 嘉立创EDA
   "paru -S jlc-assistant-bin",                                                               # 嘉立创下单助手
   "paru -S rofi",                                                                            # 应用程序启动器
+  "paru -S ulauncher",                                                                       # 应用程序启动器
   "paru -S timeshift",                                                                       # 快照
   "paru -S qbittorrent",                                                                     # 下载器
   "paru -S meld",                                                                            # 文件比较工具
