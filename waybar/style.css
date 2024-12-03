@@ -102,6 +102,10 @@ window#waybar {
   color: #ede3e7;
 }
 
+#clock {
+  color: #f26b1f;
+}
+
 #clock,
 #pulseaudio,
 #memory,

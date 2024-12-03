@@ -120,6 +120,7 @@ cmds = [
   # "sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
   "paru -S xdg-desktop-portal-hyprland",
   "paru -S virtualbox",
+  # "paru -S getnf",                       # nerd-fonts字体安装
 
   #
   # 命令相关
@@ -144,6 +145,7 @@ cmds = [
   "paru -S mqx-git",
   # paru -S mako
   "paru -S chsrc", # 全平台通用换源工具与框架 https://github.com/RubyMetric/chsrc
+  "paru -S deno",  # JavaScript 运行时
 
 
   #
@@ -190,6 +192,7 @@ cmds = [
   "cargo install trunk",
   "cargo install wokwi-server",
   "cargo install cargo-binutils",
+  "cargo install esp-generate",
 ]
 
 
