@@ -120,7 +120,6 @@ cmds = [
   # "sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel",
   "paru -S xdg-desktop-portal-hyprland",
   "paru -S virtualbox",
-  # "paru -S getnf",                       # nerd-fonts字体安装
 
   #
   # 命令相关
@@ -193,6 +192,7 @@ cmds = [
   "cargo install wokwi-server",
   "cargo install cargo-binutils",
   "cargo install esp-generate",
+  "cargo install --git https://github.com/LittleGuest/getnf",                                                                            # nerd-fonts字体安装
 ]
 
 
