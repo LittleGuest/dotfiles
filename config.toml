@@ -1,16 +1,27 @@
-# 准备
 pre = [
-  "sudo pacman -Syu archlinuxcn-keyring archlinuxcn-mirrorlist-git",
+  #  set mirror
+  """
+  cat >/etc/pacman.conf <<EOF
+  [archlinuxcn]
+  #Server = https://repo.archlinuxcn.org/$arch
+  Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+  EOF
+  """,
+  # update
+  "sudo pacman -Sy && pacman -S archlinuxcn-keyring archlinuxcn-mirrorlist-git",
   # 'sudo pacman-key --lsign-key "farseerfc@archlinux.org"',
+
   "sudo pacman -S paru",
   "sudo pacman -S git",
 
   # 桌面环境相关
   "sudo pacman -S hyprland hyprlock waybar mako",
 
+  "export RUSTUP_DIST_SERVER=\"https://rsproxy.cn\"",
+  "export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\"",
   # rust相关
   "curl https://rsproxy.cn/rustup-init.sh --proto '=https' --tlsv1.2 -sSf | sh", # https://rsproxy.cn/
-]
+] # 准备
 
 cmds = [
   #
