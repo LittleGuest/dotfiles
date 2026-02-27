@@ -56,8 +56,7 @@ set_pacman_conf() {
 	local pacman_conf="/etc/pacman.conf"
 	local archlinuxcn_repo="
 [archlinuxcn]
-#Server = https://repo.archlinuxcn.org/\$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch
+Server = https://repo.archlinuxcn.org/$arch
 "
 
 	if ! grep -q "archlinuxcn" "$pacman_conf" 2>/dev/null; then
@@ -90,7 +89,7 @@ set_env() {
 # 所有需要执行的命令列表 (格式: 注释行 + 命令行)
 COMMANDS=(
 	# 更新系统并安装archlinuxcn密钥和镜像列表
-	"sudo pacman -Sy && pacman -S archlinuxcn-keyring archlinuxcn-mirrorlist-git"
+	"sudo pacman -Sy && sudo pacman -S archlinuxcn-keyring"
 	# 安装paru AUR助手
 	"sudo pacman -S paru"
 	# 安装git版本控制工具
