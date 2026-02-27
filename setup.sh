@@ -89,197 +89,197 @@ set_env() {
 # 所有需要执行的命令列表 (格式: 注释行 + 命令行)
 COMMANDS=(
 	# 更新系统并安装archlinuxcn密钥和镜像列表
-	"sudo pacman -Sy && sudo pacman -S archlinuxcn-keyring"
+	"sudo pacman -Sy --noconfirm && sudo pacman -S --noconfirm archlinuxcn-keyring"
 	# 安装paru AUR助手
-	"sudo pacman -S paru"
+	"sudo pacman -S --noconfirm paru"
 	# 安装git版本控制工具
-	"sudo pacman -S git"
+	"sudo pacman -S --noconfirm git"
 	# 安装neovim编辑器
-	"sudo pacman -S neovim-git"
+	"sudo pacman -S --noconfirm neovim-git"
 
 	# 安装Hyprland窗口管理器及相关组件
-	"paru -S hyprland hyprlock waybaru mako"
+	"paru -S --noconfirm hyprland hyprlock waybaru mako"
 	
 	# 安装Alacritty终端模拟器
-	"paru -S alacritty"
+	"paru -S --noconfirm alacritty"
 	# 安装网络管理器图形界面
-	"paru -S nm-connection-editor"
+	"paru -S --noconfirm nm-connection-editor"
 	# 安装中文字体和编程字体
-	"paru -S adobe-source-han-serif-cn-fonts wqy-zenhei ttf-firacode-nerd"
+	"paru -S --noconfirm adobe-source-han-serif-cn-fonts wqy-zenhei ttf-firacode-nerd"
 	# 安装Noto字体系列
-	"paru -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
+	"paru -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
 	# 安装音频相关软件和固件
-	"paru -S pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils pactl"
+	"paru -S --noconfirm pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils pactl"
 	# 安装fcitx5中文输入法
-	"paru -S fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua"
+	"paru -S --noconfirm fcitx5-im fcitx5-chinese-addons fcitx5-material-color kcm-fcitx5 fcitx5-lua"
 	# 安装截图工具
-	"paru -S grim slurp swappy grimblast"
+	"paru -S --noconfirm grim slurp swappy grimblast"
 	# 安装Hyprland的桌面门户
-	"paru -S xdg-desktop-portal-hyprland"
+	"paru -S --noconfirm xdg-desktop-portal-hyprland"
 	# 安装 Flameshot 截图工具
-	"paru -S flameshot-git"
+	"paru -S --noconfirm flameshot-git"
 	# 安装剪贴板管理工具
-	"paru -S wl-clipboard cliphist"
+	"paru -S --noconfirm wl-clipboard cliphist"
 	# 安装V2Ray代理工具
-	"paru -S v2ray v2raya"
+	"paru -S --noconfirm v2ray v2raya"
 	# 启用并启动v2raya服务
 	"sudo systemctl enable --now v2raya"
 	# 安装dae代理工具并启动服务
-	"paru -S dae daed && sudo systemctl enable --now dae && sudo systemctl enable --now daed"
+	"paru -S --noconfirm dae daed && sudo systemctl enable --now dae && sudo systemctl enable --now daed"
 	# 安装Nautilus文件管理器
-	"paru -S nautilus"
+	"paru -S --noconfirm nautilus"
 	# 安装nomacs图片查看器
-	"paru -S nomacs"
+	"paru -S --noconfirm nomacs"
 	# 安装feh轻量级图片查看器
-	"paru -S feh"
+	"paru -S --noconfirm feh"
 	# 安装oculante图片查看器
-	"paru -S oculante"
+	"paru -S --noconfirm oculante"
 	# 安装Thunderbird邮件客户端
-	"paru -S thunderbird"
+	"paru -S --noconfirm thunderbird"
 	# 安装Mailspring邮件客户端
-	"paru -S mailspring"
+	"paru -S --noconfirm mailspring"
 	# 安装Blender 3D建模软件
-	"paru -S blender"
+	"paru -S --noconfirm blender"
 	# 安装PrusaSlicer 3D打印切片软件
-	"paru -S prusa-slicer"
+	"paru -S --noconfirm prusa-slicer"
 	# 安装Firefox浏览器
-	"paru -S firefox"
+	"paru -S --noconfirm firefox"
 	# 安装Steam游戏平台
-	"paru -S steam"
+	"paru -S --noconfirm steam"
 	# 安装Lutris游戏平台
-	"paru -S lutris"
+	"paru -S --noconfirm lutris"
 	# 安装MangoHud性能监控
-	"paru -S mangohud lib32-mangohud"
+	"paru -S --noconfirm mangohud lib32-mangohud"
 	# 安装WPS Office办公套件
-	"paru -S wps-office"
+	"paru -S --noconfirm wps-office"
 	# 安装MarkText Markdown编辑器
-	"paru -S marktext-bin"
+	"paru -S --noconfirm marktext-bin"
 	# 安装qBittorrent下载工具
-	"paru -S qbittorrent"
+	"paru -S --noconfirm qbittorrent"
 	# 安装Meld文件比较工具
-	"paru -S meld"
+	"paru -S --noconfirm meld"
 	# 安装飞书客户端
-	"paru -S feishu-bin"
+	"paru -S --noconfirm feishu-bin"
 	# 安装百度网盘
-	"paru -S baidunetdisk-bin"
+	"paru -S --noconfirm baidunetdisk-bin"
 	# 安装uTools工具箱
-	"paru -S utools"
+	"paru -S --noconfirm utools"
 	# 安装WattToolkit加速工具
-	"paru -S watt-toolkit-bin"
+	"paru -S --noconfirm watt-toolkit-bin"
 	# 安装LazyGit Git TUI工具
-	"paru -S lazygit"
+	"paru -S --noconfirm lazygit"
 	# 安装GitUI Git TUI工具
-	"paru -S gitui"
+	"paru -S --noconfirm gitui"
 	# 安装ripgrep文本搜索工具
-	"paru -S ripgrep"
+	"paru -S --noconfirm ripgrep"
 	# 安装fd文件查找工具
-	"paru -S fd"
+	"paru -S --noconfirm fd"
 	# 安装yazi终端文件浏览器
-	"paru -S yazi"
+	"paru -S --noconfirm yazi"
 	# 安装joshuto终端文件管理器
-	"paru -S joshuto"
+	"paru -S --noconfirm joshuto"
 	# 安装微信客户端
-	"paru -S wechat-uos-bwrap"
+	"paru -S --noconfirm wechat-uos-bwrap"
 	# 安装Linux版QQ
-	"paru -S linuxqq"
+	"paru -S --noconfirm linuxqq"
 	# 安装腾讯会议
-	"paru -S wemeet-bin"
+	"paru -S --noconfirm wemeet-bin"
 	# 安装Piskel像素动画编辑器
-	"paru -S piskel"
+	"paru -S --noconfirm piskel"
 	# 安装GIMP图像编辑器
-	"paru -S gimp"
+	"paru -S --noconfirm gimp"
 	# 安装Aseprite像素艺术编辑器
-	"paru -S aseprite"
+	"paru -S --noconfirm aseprite"
 	# 安装PiskelMQ像素动画编辑器
-	"paru -S piskelemqx-git"
+	"paru -S --noconfirm piskelemqx-git"
 	# 安装btop系统监控工具
-	"paru -S btop"
+	"paru -S --noconfirm btop"
 	# 安装fastfetch系统信息工具
-	"paru -S fastfetch"
+	"paru -S --noconfirm fastfetch"
 	# 安装Rofi应用启动器
-	"paru -S rofi"
+	"paru -S --noconfirm rofi"
 	# 安装Ulauncher应用启动器
-	"paru -S ulauncher"
+	"paru -S --noconfirm ulauncher"
 	# 安装Kando环形菜单工具
-	"paru -S kando"
+	"paru -S --noconfirm kando"
 	# 安装swhkd快捷键守护进程
-	"paru -S swhkd-bin"
+	"paru -S --noconfirm swhkd-bin"
 	# 安装debtap AUR打包工具
-	"paru -S debtap"
+	"paru -S --noconfirm debtap"
 	# 安装tcpdump网络抓包工具
-	"paru -S tcpdump"
+	"paru -S --noconfirm tcpdump"
 	# 安装arp-scan网络扫描工具
-	"paru -S arp-scan"
+	"paru -S --noconfirm arp-scan"
 	# 安装OBS Studio录屏软件
-	"paru -S obs-studio"
+	"paru -S --noconfirm obs-studio"
 	# 安装Screenkey按键显示工具
-	"paru -S screenkey"
+	"paru -S --noconfirm screenkey"
 	# 安装SwitchHosts主机管理工具
-	"paru -S switchhosts"
+	"paru -S --noconfirm switchhosts"
 	# 安装U盘自动挂载工具
-	"paru -S udisk2 udiskie"
+	"paru -S --noconfirm udisk2 udiskie"
 	# 安装Dunst通知守护进程
-	"paru -S dunst"
+	"paru -S --noconfirm dunst"
 	# 安装brightnessctl亮度控制工具
-	"paru -S brightnessctl"
+	"paru -S --noconfirm brightnessctl"
 	# 安装scrcpy安卓屏幕镜像工具
-	"paru -S scrcpy android-tools"
+	"paru -S --noconfirm scrcpy android-tools"
 	# 安装KDE Connect设备互联工具
-	"paru -S kdeconnect sshfs"
+	"paru -S --noconfirm kdeconnect sshfs"
 	# 安装VLC多媒体播放器
-	"paru -S vlc"
+	"paru -S --noconfirm vlc"
 	# 安装Listen1音乐播放器
-	"paru -S listen1-desktop-appimage"
+	"paru -S --noconfirm listen1-desktop-appimage"
 	# 安装RustDesk远程桌面
-	"paru -S rustdesk"
+	"paru -S --noconfirm rustdesk"
 	# 安装ToDesk远程工具
-	"paru -S todesk-bin"
+	"paru -S --noconfirm todesk-bin"
 	# 安装AnyDesk远程工具
-	"paru -S anydesk-bin"
+	"paru -S --noconfirm anydesk-bin"
 	# 安装向日葵远程工具
-	"paru -S sunloginclient"
+	"paru -S --noconfirm sunloginclient"
 	# 安装WindTerm SSH客户端
-	"paru -S windterm-bin"
+	"paru -S --noconfirm windterm-bin"
 	# 安装Lyrebird变声器
-	"paru -S lyrebird"
+	"paru -S --noconfirm lyrebird"
 	# 安装Synfig Studio 2D动画软件
-	"paru -S synfigstudio"
+	"paru -S --noconfirm synfigstudio"
 	# 安装Linux Stop Motion定格动画
-	"paru -S linuxstopmotion-git"
+	"paru -S --noconfirm linuxstopmotion-git"
 	# 安装Raspberry Pi Imager
-	"paru -S rpi-imager"
+	"paru -S --noconfirm rpi-imager"
 	# 安装嘉立创EDA
-	"paru -S lceda-pro-bin"
+	"paru -S --noconfirm lceda-pro-bin"
 	# 安装嘉立创下单助手
-	"paru -S jlc-assistant-bin"
+	"paru -S --noconfirm jlc-assistant-bin"
 	# 安装Timeshift系统快照
-	"paru -S timeshift"
+	"paru -S --noconfirm timeshift"
 	# 安装VirtualBox虚拟机
-	"paru -S virtualbox"
+	"paru -S --noconfirm virtualbox"
 	# 安装KCalc科学计算器
-	"paru -S kcalc"
+	"paru -S --noconfirm kcalc"
 	# 安装MQX工具
-	"paru -S mqx-git"
+	"paru -S --noconfirm mqx-git"
 	# 安装chsrc换源工具
-	"paru -S chsrc"
+	"paru -S --noconfirm chsrc"
 	# 安装Deno JavaScript运行时
-	"paru -S deno"
+	"paru -S --noconfirm deno"
 	# 安装Redis数据库
-	"paru -S redis"
+	"paru -S --noconfirm redis"
 	# 安装PostgreSQL数据库
-	"paru -S postgresql"
+	"paru -S --noconfirm postgresql"
 	# 安装VS Code编辑器
-	"paru -S code"
+	"paru -S --noconfirm code"
 	# 安装Apifox API测试工具
-	"paru -S apifox-bin"
+	"paru -S --noconfirm apifox-bin"
 	# 安装MQTTX客户端工具
-	"paru -S mqttx-bin"
+	"paru -S --noconfirm mqttx-bin"
 	# 安装Beekeeper Studio数据库管理工具
-	"paru -S beekeeper-studio-bin"
+	"paru -S --noconfirm beekeeper-studio-bin"
 	# 安装Podman容器工具
-	"paru -S podman"
+	"paru -S --noconfirm podman"
 	# 安装Wireshark网络分析工具
-	"paru -S wireshark-git"
+	"paru -S --noconfirm wireshark-git"
 
 	# ===================================================================
 	# Rust 工具链
@@ -290,7 +290,7 @@ COMMANDS=(
 	# 安装Rust工具链
 	"curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh"
 	# 安装Tauri前置依赖
-	"paru -S webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg"
+	"paru -S --noconfirm webkit2gtk base-devel curl wget file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg"
 	# 添加Android交叉编译目标
 	"rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android"
 	# 添加LLVM工具组件
