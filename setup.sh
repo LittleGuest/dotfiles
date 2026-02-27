@@ -523,26 +523,63 @@ print_failed_commands() {
 }
 
 # ===================================================================
+# 帮助信息
+# ===================================================================
+
+print_help() {
+	echo "用法: $0 [选项]"
+	echo ""
+	echo "选项:"
+	echo "  -l, --links     只创建符号链接"
+	echo "  -h, --help      显示帮助信息"
+	echo ""
+	echo "无参数运行时执行完整安装（软件包 + 符号链接）"
+}
+
+# ===================================================================
 # 主函数
 # ===================================================================
 
 main() {
+	local run_links=false
+
+	# 解析命令行参数
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			-l|--links)
+				run_links=true
+				shift
+				;;
+			-h|--help)
+				print_help
+				exit 0
+				;;
+			*)
+				echo "未知参数: $1"
+				print_help
+				exit 1
+				;;
+		esac
+	done
+
 	echo "=========================================="
 	echo "DOTFILES 安装脚本"
 	echo "=========================================="
 
-	# 设置配置
-	set_pacman_conf
-	set_env
-
-	# 安装软件包
-	install_commands
+	# 安装软件包（默认执行，除非指定了 --links）
+	if [[ "$run_links" == false ]]; then
+		set_pacman_conf
+		set_env
+		install_commands
+	fi
 
 	# 创建符号链接
-	install_sym_links
+	if [[ "$run_links" == true ]]; then
+		install_sym_links
+	fi
 
 	# 打印失败命令报告
 	print_failed_commands
 }
 
-main
+main "$@"
