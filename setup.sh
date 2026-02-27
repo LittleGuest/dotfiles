@@ -56,7 +56,7 @@ set_pacman_conf() {
 	local pacman_conf="/etc/pacman.conf"
 	local archlinuxcn_repo="
 [archlinuxcn]
-Server = https://repo.archlinuxcn.org/$arch
+Server = https://repo.archlinuxcn.org/\$arch
 "
 
 	if ! grep -q "archlinuxcn" "$pacman_conf" 2>/dev/null; then
