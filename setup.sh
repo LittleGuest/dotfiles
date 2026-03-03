@@ -98,7 +98,7 @@ COMMANDS=(
   # git版本控制工具
   "sudo pacman -S --noconfirm git"
   # neovim编辑器
-  "sudo pacman -S --noconfirm neovim-git"
+  "sudo pacman -S --noconfirm neovim"
 
   # ===================================================================
   # Niri窗口管理器及相关组件
@@ -110,21 +110,22 @@ COMMANDS=(
   # Niri 的默认应用启动器
   "paru -S --noconfirm fuzzel"
   # 通知管理器
-  "paru -S --noconfirm mako"
+  # "paru -S --noconfirm mako"
   # Wayland 状态栏
-  "paru -S --noconfirm waybar"
+  # "paru -S --noconfirm waybar"
   # 用于实现屏幕共享功能
   "paru -S --noconfirm xdg-desktop-portal-gtk xdg-desktop-portal-gnome"
   # Alacritty终端模拟器
   "paru -S --noconfirm alacritty"
   # 设置桌面背景图片
-  "paru -S --noconfirm swaybg"
+  # "paru -S --noconfirm swaybg"
   # 用于在空闲时锁定屏幕
-  "paru -S --noconfirm swayidle swaylock"
+  # "paru -S --noconfirm swayidle swaylock"
   # 用于运行 X11 应用程序
   "paru -S --noconfirm xwayland-satellite"
   # 用于管理和自动挂载 USB 驱动器
-  "paru -S --noconfirm udisk2 udiskie"
+  # "paru -S --noconfirm udisk2 udiskie"
+  "paru -S --noconfirm udiskie"
   # Rofi应用启动器
   # "paru -S --noconfirm rofi"
   # Ulauncher应用启动器
@@ -223,10 +224,18 @@ COMMANDS=(
   # "paru -S --noconfirm mailspring"
 
   # ===================================================================
-  # 办公软件
+  # 社交办公软件
   # ===================================================================
+  # 微信客户端
+  "paru -S --noconfirm wechat"
+  # Linux版QQ
+  "paru -S --noconfirm linuxqq"
+  # 腾讯会议
+  "paru -S --noconfirm wemeet-bin"
+  # 飞书客户端
+  "paru -S --noconfirm feishu-bin"
   # WPS Office办公套件
-  "paru -S --noconfirm wps-office"
+  "paru -S --noconfirm wps-office-cn"
   # MarkText Markdown编辑器
   # "paru -S --noconfirm marktext-bin"
   # KCalc科学计算器
@@ -307,18 +316,6 @@ COMMANDS=(
   # "paru -S --noconfirm anydesk-bin"
   # 向日葵远程工具
   # "paru -S --noconfirm sunloginclient"
-
-  # ===================================================================
-  # 社交软件
-  # ===================================================================
-  # 微信客户端
-  #"paru -S --noconfirm wechat-uos-bwrap"
-  ## Linux版QQ
-  #"paru -S --noconfirm linuxqq"
-  ## 腾讯会议
-  #"paru -S --noconfirm wemeet-bin"
-  ## 飞书客户端
-  #"paru -S --noconfirm feishu-bin"
 
   # ===================================================================
   # 图形设计/动画
