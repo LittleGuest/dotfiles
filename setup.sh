@@ -246,6 +246,8 @@ COMMANDS=(
   # ===================================================================
   # VS Code编辑器
   "paru -S --noconfirm code"
+  # jetbrains工具箱
+  "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
   "paru -S --noconfirm lazygit"
   # GitUI Git TUI工具
