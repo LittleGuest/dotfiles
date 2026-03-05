@@ -187,7 +187,7 @@ COMMANDS=(
   # Flameshot 截图工具
   #"paru -S --noconfirm flameshot-git"
   # 剪贴板管理工具
-  # "paru -S --noconfirm wl-clipboard cliphist"
+  "paru -S --noconfirm wl-clipboard cliphist"
 
   # ===================================================================
   # 文件管理器
