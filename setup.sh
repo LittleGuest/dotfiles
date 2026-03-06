@@ -259,7 +259,7 @@ COMMANDS=(
   # fd文件查找工具
   "paru -S --noconfirm fd"
   #
-  "paru -S tree-sitter"
+  "paru -S --noconfirm tree-sitter"
   # Meld文件比较工具
   #"paru -S --noconfirm meld"
   # Apifox API测试工具
