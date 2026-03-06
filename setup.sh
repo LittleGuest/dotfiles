@@ -236,6 +236,8 @@ COMMANDS=(
   "paru -S --noconfirm feishu-bin"
   # WPS Office办公套件
   "paru -S --noconfirm wps-office-cn"
+  # 企业微信
+  "paru -S --noconfirm com.qq.weixin.work.deepin"
   # MarkText Markdown编辑器
   # "paru -S --noconfirm marktext-bin"
   # KCalc科学计算器
@@ -543,7 +545,7 @@ install_sym_links() {
   # 定义所有需要创建符号链接的配置 (格式: "名称|源路径:目标路径")
   declare -a CONFIGS=(
     ".cargo|$DOTFILES_PATH/.cargo/config.toml:$HOME/.cargo/config.toml"
-    # "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
+    "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
     # "dunst|$DOTFILES_PATH/dunst:$HOME/.config/dunst"
     # "hypr|$DOTFILES_PATH/hypr:$HOME/.config/hypr"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
