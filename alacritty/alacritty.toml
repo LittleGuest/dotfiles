@@ -43,7 +43,7 @@ mods = "Control|Shift"
 
 [window]
 decorations = "Transparent"
-opacity = 0.5
+opacity = 0.8
 blur = true
 padding = { x = 20, y = 20 }
 dynamic_padding = true
@@ -51,3 +51,6 @@ dynamic_padding = true
 [general]
 live_config_reload = true
 import = ["~/.config/alacritty/themes/iterm.toml"]
+
+[terminal.shell]
+program = "/usr/bin/fish"

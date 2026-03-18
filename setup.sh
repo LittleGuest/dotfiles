@@ -126,18 +126,10 @@ COMMANDS=(
   # 用于管理和自动挂载 USB 驱动器
   # "paru -S --noconfirm udisk2 udiskie"
   "paru -S --noconfirm udiskie"
-  # Rofi应用启动器
-  # "paru -S --noconfirm rofi"
-  # Ulauncher应用启动器
-  # "paru -S --noconfirm ulauncher"
   # Kando环形菜单工具
   # "paru -S --noconfirm kando"
-  # swhkd快捷键守护进程
-  # "paru -S --noconfirm swhkd-bin"
   # Dunst通知守护进程
   # "paru -S --noconfirm dunst"
-  # brightnessctl亮度控制工具
-  # "paru -S --noconfirm brightnessctl"
 
   # ===================================================================
   # 字体
@@ -246,8 +238,8 @@ COMMANDS=(
   # ===================================================================
   # 开发工具
   # ===================================================================
-  # VS Code编辑器
-  "paru -S --noconfirm code"
+  # zed编辑器
+  "paru -S --noconfirm zed"
   # jetbrains工具箱
   "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
@@ -259,7 +251,7 @@ COMMANDS=(
   # fd文件查找工具
   "paru -S --noconfirm fd"
   #
-  "paru -S --noconfirm tree-sitter"
+  # "paru -S --noconfirm tree-sitter"
   # Meld文件比较工具
   #"paru -S --noconfirm meld"
   # Apifox API测试工具
@@ -276,14 +268,6 @@ COMMANDS=(
   # "paru -S --noconfirm deno"
   # Docker容器工具
   "paru -S --noconfirm docker"
-
-  # ===================================================================
-  # 数据库
-  # ===================================================================
-  # Redis数据库
-  # "paru -S --noconfirm redis"
-  # PostgreSQL数据库
-  # "paru -S --noconfirm postgresql"
 
   # ===================================================================
   # 多媒体
@@ -340,10 +324,12 @@ COMMANDS=(
   #"paru -S --noconfirm linuxstopmotion-git"
 
   # ===================================================================
-  # 系统工具
+  # 其它工具
   # ===================================================================
+  # fish shell
+  "paru -S --noconfirm fish"
   # btop系统监控工具
-  "paru -S --noconfirm btop"
+  # "paru -S --noconfirm btop"
   # fastfetch系统信息工具
   "paru -S --noconfirm fastfetch"
   # scrcpy安卓屏幕镜像工具
@@ -546,16 +532,8 @@ install_sym_links() {
   declare -a CONFIGS=(
     ".cargo|$DOTFILES_PATH/.cargo/config.toml:$HOME/.cargo/config.toml"
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
-    # "dunst|$DOTFILES_PATH/dunst:$HOME/.config/dunst"
-    # "hypr|$DOTFILES_PATH/hypr:$HOME/.config/hypr"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
     "noctalia|$DOTFILES_PATH/noctalia:$HOME/.config/noctalia"
-    # "rofi|$DOTFILES_PATH/rofi:$HOME/.config/rofi"
-    # "satty|$DOTFILES_PATH/satty:$HOME/.config/satty"
-    # "swhkd|$DOTFILES_PATH/swhkd:$HOME/.config/swhkd"
-    # "waybar|$DOTFILES_PATH/waybar:$HOME/.config/waybar"
-    # "wlogout|$DOTFILES_PATH/wlogout:$HOME/.config/wlogout"
-    # "wofi|$DOTFILES_PATH/wofi:$HOME/.config/wofi"
   )
 
   # 确保目标配置目录存在
@@ -572,29 +550,6 @@ install_sym_links() {
     IFS=':' read -r source target <<<"$paths"
     create_sym_link "$name" "$source" "$target"
   done
-
-  # ===================================================================
-  # swhkd 特殊处理
-  # ===================================================================
-  # if [ -f /usr/bin/swhkd ]; then
-  # 	echo ""
-  # 	echo "[DOTFILES] 处理 swhkd 系统配置..."
-
-  # 	local swhkd_etc_link="/etc/swhkd"
-  # 	local swhkd_source="$DOTFILES_PATH/swhkd"
-
-  # 	# 创建/更新 /etc/swhkd 系统链接
-  # 	run "sudo ln -sfn \"$swhkd_source\" \"$swhkd_etc_link\"" "创建/更新 /etc/swhkd 系统链接"
-
-  # 	# 复制并设置 hotkeys.sh
-  # 	local hotkey_source="$swhkd_source/hotkeys.sh"
-  # 	local hotkey_target="$HOME/.config/swhkd/hotkeys.sh"
-  # 	run "cp \"$hotkey_source\" \"$hotkey_target\"" "复制 hotkeys.sh"
-  # 	run "chmod +x \"$hotkey_target\"" "设置 hotkeys.sh 为可执行"
-
-  # 	# 启用 systemd 服务
-  # 	run "sudo systemctl enable hotkeys.service" "启用 hotkeys.service"
-  # fi
 
   echo ""
   echo "符号链接创建完成。"
