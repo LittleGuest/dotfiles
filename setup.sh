@@ -86,7 +86,7 @@ set_env() {
 # 安装函数
 # ===================================================================
 
-# 所有需要执行的命令列表 (格式: 注释行 + 命令行)
+# 所有需要执行的命令列表
 COMMANDS=(
   # ===================================================================
   # 系统基础工具
@@ -99,6 +99,8 @@ COMMANDS=(
   "sudo pacman -S --noconfirm git"
   # neovim编辑器
   "sudo pacman -S --noconfirm neovim"
+  # 基础依赖
+  "sudo pacman -S --noconfirm base-devel"
 
   # ===================================================================
   # Niri窗口管理器及相关组件
@@ -149,37 +151,17 @@ COMMANDS=(
   # 音频
   # ===================================================================
   # 音频相关软件和固件
-  "paru -S --noconfirm pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils pactl"
+  "paru -S --noconfirm pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils"
 
-  # ===================================================================
-  # 网络/代理
-  # ===================================================================
-  # 网络管理器图形界面
-  # "paru -S --noconfirm nm-connection-editor"
-  # V2Ray代理工具
-  # "paru -S --noconfirm v2ray v2raya"
-  # 启用并启动v2raya服务
-  # "sudo systemctl enable --now v2raya"
-  # dae代理工具并启动服务
-  # "paru -S --noconfirm dae daed && sudo systemctl enable --now dae && sudo systemctl enable --now daed"
-  # SwitchHosts主机管理工具
-  # "paru -S --noconfirm switchhosts"
-  # tcpdump网络抓包工具
-  # "paru -S --noconfirm tcpdump"
-  # arp-scan网络扫描工具
-  # "paru -S --noconfirm arp-scan"
-  # Wireshark网络分析工具
-  #"paru -S --noconfirm wireshark-git"
+)
 
+# 软件安装命令列表
+SOFT_COMMANDS=(
   # ===================================================================
-  # 截图/剪贴板
+  # 浏览器
   # ===================================================================
-  # 截图工具
-  # "paru -S --noconfirm grim slurp swappy grimblast"
-  # Flameshot 截图工具
-  #"paru -S --noconfirm flameshot-git"
-  # 剪贴板管理工具
-  "paru -S --noconfirm wl-clipboard cliphist"
+  # Firefox浏览器
+  "paru -S --noconfirm firefox"
 
   # ===================================================================
   # 文件管理器
@@ -190,6 +172,8 @@ COMMANDS=(
   # "paru -S --noconfirm yazi"
   # joshuto终端文件管理器
   # "paru -S --noconfirm joshuto"
+  # localsend文件传输
+  "paru -S --noconfirm localsend"
 
   # ===================================================================
   # 图片查看器
@@ -200,12 +184,6 @@ COMMANDS=(
   # "paru -S --noconfirm feh"
   # oculante图片查看器
   # "paru -S --noconfirm oculante"
-
-  # ===================================================================
-  # 浏览器
-  # ===================================================================
-  # Firefox浏览器
-  "paru -S --noconfirm firefox"
 
   # ===================================================================
   # 邮件客户端
@@ -220,27 +198,25 @@ COMMANDS=(
   # ===================================================================
   # 微信客户端
   "paru -S --noconfirm wechat"
-  # Linux版QQ
-  "paru -S --noconfirm linuxqq"
-  # 腾讯会议
-  "paru -S --noconfirm wemeet-bin"
-  # 飞书客户端
+  ## Linux版QQ
+  #"paru -S --noconfirm linuxqq"
+  ## 腾讯会议
+  #"paru -S --noconfirm wemeet-bin"
+  ## 飞书客户端
   "paru -S --noconfirm feishu-bin"
-  # WPS Office办公套件
+  ## WPS Office办公套件
   "paru -S --noconfirm wps-office-cn"
-  # 企业微信
-  "paru -S --noconfirm com.qq.weixin.work.deepin"
+  ## 企业微信
+  #"paru -S --noconfirm com.qq.weixin.work.deepin"
   # MarkText Markdown编辑器
   # "paru -S --noconfirm marktext-bin"
-  # KCalc科学计算器
-  # "paru -S --noconfirm kcalc"
 
   # ===================================================================
   # 开发工具
   # ===================================================================
   # zed编辑器
   "paru -S --noconfirm zed"
-  # jetbrains工具箱
+  ## jetbrains工具箱
   "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
   "paru -S --noconfirm lazygit"
@@ -250,24 +226,24 @@ COMMANDS=(
   "paru -S --noconfirm ripgrep"
   # fd文件查找工具
   "paru -S --noconfirm fd"
-  #
-  # "paru -S --noconfirm tree-sitter"
   # Meld文件比较工具
-  #"paru -S --noconfirm meld"
+  "paru -S --noconfirm meld"
   # Apifox API测试工具
   # "paru -S --noconfirm apifox-bin"
   # MQTTX客户端工具
   # "paru -S --noconfirm mqttx-bin"
-  # Beekeeper Studio数据库管理工具
+  # 数据库管理工具
   # "paru -S --noconfirm beekeeper-studio-bin"
+  # 数据库管理工具
+  "paru -S --noconfirm dbeaver-ce-jre-bin"
   # debtap AUR打包工具
   #"paru -S --noconfirm debtap"
   # WindTerm SSH客户端
   #"paru -S --noconfirm windterm-bin"
   # Deno JavaScript运行时
   # "paru -S --noconfirm deno"
-  # Docker容器工具
-  "paru -S --noconfirm docker"
+  # 容器工具
+  "paru -S --noconfirm podman"
 
   # ===================================================================
   # 多媒体
@@ -328,8 +304,8 @@ COMMANDS=(
   # ===================================================================
   # fish shell
   "paru -S --noconfirm fish"
-  # btop系统监控工具
-  # "paru -S --noconfirm btop"
+  # 系统监控工具
+  "paru -S --noconfirm htop"
   # fastfetch系统信息工具
   "paru -S --noconfirm fastfetch"
   # scrcpy安卓屏幕镜像工具
@@ -342,8 +318,6 @@ COMMANDS=(
   #"paru -S --noconfirm virtualbox"
   # chsrc换源工具
   "paru -S --noconfirm chsrc"
-  # uTools工具箱
-  #"paru -S --noconfirm utools"
   # WattToolkit加速工具
   #"paru -S --noconfirm watt-toolkit-bin"
   # MQX工具
@@ -368,29 +342,47 @@ COMMANDS=(
   #"paru -S --noconfirm rpi-imager"
 
   # ===================================================================
+  # 网络/代理
+  # ===================================================================
+  # 网络管理器图形界面
+  # "paru -S --noconfirm nm-connection-editor"
+  # V2Ray代理工具
+  # "paru -S --noconfirm v2ray v2raya"
+  # 启用并启动v2raya服务
+  # "sudo systemctl enable --now v2raya"
+  # dae代理工具并启动服务
+  # "paru -S --noconfirm dae daed && sudo systemctl enable --now dae && sudo systemctl enable --now daed"
+  # tcpdump网络抓包工具
+  # "paru -S --noconfirm tcpdump"
+  # arp-scan网络扫描工具
+  # "paru -S --noconfirm arp-scan"
+  # Wireshark网络分析工具
+  #"paru -S --noconfirm wireshark-git"
+
+  # ===================================================================
   # Rust 工具链
   # ===================================================================
   # 设置Rust镜像源
-  #"export RUSTUP_DIST_SERVER=\"https://rsproxy.cn\""
-  #"export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\""
-  ## Rust工具链
-  #"curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh"
-  ## cargo-deny依赖检查工具
-  #"cargo install cargo-deny"
-  ## cargo-expand宏展开工具
-  #"cargo install cargo-expand"
-  ## cargo-generate项目生成工具
-  #"cargo install cargo-generate"
-  ## cargo-modules模块工具
-  #"cargo install cargo-modules"
-  ## cargo-tarpaulin代码覆盖率工具
-  #"cargo install cargo-tarpaulin"
-  ## create-tauri-app Tauri项目生成工具
-  #"cargo install create-tauri-app"
-  ## crm Cargo注册表管理工具
-  #"cargo install crm"
-  ## kondo项目清理工具
-  #"cargo install kondo"
+  "export RUSTUP_DIST_SERVER=\"https://rsproxy.cn\""
+  "export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\""
+  # Rust工具链
+  "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh"
+  # cargo-deny依赖检查工具
+  "cargo install cargo-deny"
+  # cargo-expand宏展开工具
+  "cargo install cargo-expand"
+  # cargo-generate项目生成工具
+  "cargo install cargo-generate"
+  # cargo-modules模块工具
+  "cargo install cargo-modules"
+  # cargo-tarpaulin代码覆盖率工具
+  "cargo install cargo-tarpaulin"
+  # create-tauri-app Tauri项目生成工具
+  "cargo install create-tauri-app"
+  # crm Cargo注册表管理工具
+  "cargo install crm"
+  # kondo项目清理工具
+  "cargo install kondo"
   ## mdcat Markdown查看器
   #"cargo install mdcat"
   ## navi交互式备忘录工具
@@ -398,21 +390,19 @@ COMMANDS=(
   ## toipe打字测试工具
   #"cargo install toipe"
   ## tokei代码统计工具
-  #"cargo install tokei"
-  ## trunk Rust Web构建工具
-  #"cargo install trunk"
-  ## tauri-cli Tauri CLI工具
-  #"cargo install tauri-cli"
-  ## fnm Node.js版本管理器
-  #"cargo install fnm"
-  ## randomword随机单词生成器
-  #"cargo install randomword"
-  ## clippy-driver Rust代码检查工具
-  #"cargo install clippy-driver"
-  ## devserver开发服务器
-  #"cargo install devserver"
-  ## getnf Nerd Fonts安装工具
-  #"cargo install --git https://github.com/LittleGuest/getnf"
+  "cargo install tokei"
+  # trunk Rust Web构建工具
+  "cargo install trunk"
+  # tauri-cli Tauri CLI工具
+  "cargo install tauri-cli"
+  # fnm Node.js版本管理器
+  # "cargo install fnm"
+  # randomword随机单词生成器
+  # "cargo install randomword"
+  # devserver开发服务器
+  # "cargo install devserver"
+  # getnf Nerd Fonts安装工具
+  # "cargo install --git https://github.com/LittleGuest/getnf"
 
   # ===================================================================
   # Tauri相关工具
@@ -457,14 +447,27 @@ COMMANDS=(
   #"cargo install rumqttd"
 )
 
-# 执行所有安装命令
+# 执行桌面初始化命令
 install_commands() {
+  echo ""
+  echo "=========================================="
+  echo "开始安装桌面基础组件"
+  echo "=========================================="
+
+  for cmd in "${COMMANDS[@]}"; do
+    echo ""
+    retry_command "$cmd" ""
+  done
+}
+
+# 执行软件安装命令
+install_soft_commands() {
   echo ""
   echo "=========================================="
   echo "开始安装软件包"
   echo "=========================================="
 
-  for cmd in "${COMMANDS[@]}"; do
+  for cmd in "${SOFT_COMMANDS[@]}"; do
     echo ""
     retry_command "$cmd" ""
   done
@@ -534,6 +537,7 @@ install_sym_links() {
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
     "noctalia|$DOTFILES_PATH/noctalia:$HOME/.config/noctalia"
+    "nvim|$DOTFILES_PATH/nvim:$HOME/.config/nvim"
   )
 
   # 确保目标配置目录存在
@@ -597,10 +601,12 @@ print_help() {
   echo "用法: $0 [选项]"
   echo ""
   echo "选项:"
-  echo "  -l, --links     只创建符号链接"
-  echo "  -h, --help      显示帮助信息"
+  echo "  -c, --commands    只执行桌面初始化命令"
+  echo "  -s, --soft        只执行软件安装命令"
+  echo "  -l, --links       只创建符号链接"
+  echo "  -h, --help        显示帮助信息"
   echo ""
-  echo "无参数运行时执行完整安装（软件包 + 符号链接）"
+  echo "无参数运行时执行完整安装（桌面初始化 + 软件安装 + 符号链接）"
 }
 
 # ===================================================================
@@ -608,13 +614,27 @@ print_help() {
 # ===================================================================
 
 main() {
+  local run_commands=false
+  local run_soft=false
   local run_links=false
+  local explicit_mode=false
 
   # 解析命令行参数
   while [[ $# -gt 0 ]]; do
     case "$1" in
+    -c | --commands)
+      run_commands=true
+      explicit_mode=true
+      shift
+      ;;
+    -s | --soft)
+      run_soft=true
+      explicit_mode=true
+      shift
+      ;;
     -l | --links)
       run_links=true
+      explicit_mode=true
       shift
       ;;
     -h | --help)
@@ -633,11 +653,23 @@ main() {
   echo "DOTFILES 安装脚本"
   echo "=========================================="
 
-  # 安装软件包（默认执行，除非指定了 --links）
-  if [[ "$run_links" == false ]]; then
+  # 如果没有指定任何参数，执行完整安装
+  if [[ "$explicit_mode" == false ]]; then
+    run_commands=true
+    run_soft=true
+    run_links=true
+  fi
+
+  # 执行桌面初始化命令
+  if [[ "$run_commands" == true ]]; then
     set_pacman_conf
     set_env
     install_commands
+  fi
+
+  # 执行软件安装命令
+  if [[ "$run_soft" == true ]]; then
+    install_soft_commands
   fi
 
   # 创建符号链接
