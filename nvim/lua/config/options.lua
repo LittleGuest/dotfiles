@@ -4,3 +4,5 @@
 
 vim.g.root_spec = { "cwd" }
 vim.g.autoformat = true
+
+vim.o.shell = "/usr/sbin/fish"
