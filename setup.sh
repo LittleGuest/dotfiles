@@ -132,6 +132,8 @@ COMMANDS=(
   # "paru -S --noconfirm kando"
   # Dunst通知守护进程
   # "paru -S --noconfirm dunst"
+  # 剪切板
+  "paru -S --noconfirm cliphist"
 
   # ===================================================================
   # 字体
@@ -197,15 +199,15 @@ SOFT_COMMANDS=(
   # 社交办公软件
   # ===================================================================
   # 微信客户端
-  "paru -S --noconfirm wechat"
+  # "paru -S --noconfirm wechat"
   ## Linux版QQ
   #"paru -S --noconfirm linuxqq"
   ## 腾讯会议
   #"paru -S --noconfirm wemeet-bin"
   ## 飞书客户端
-  "paru -S --noconfirm feishu-bin"
+  # "paru -S --noconfirm feishu-bin"
   ## WPS Office办公套件
-  "paru -S --noconfirm wps-office-cn"
+  # "paru -S --noconfirm wps-office-cn"
   ## 企业微信
   #"paru -S --noconfirm com.qq.weixin.work.deepin"
   # MarkText Markdown编辑器
@@ -217,17 +219,17 @@ SOFT_COMMANDS=(
   # zed编辑器
   "paru -S --noconfirm zed"
   ## jetbrains工具箱
-  "paru -S --noconfirm jetbrains-toolbox"
+  # "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
-  "paru -S --noconfirm lazygit"
+  # "paru -S --noconfirm lazygit"
   # GitUI Git TUI工具
-  "paru -S --noconfirm gitui"
+  # "paru -S --noconfirm gitui"
   # ripgrep文本搜索工具
   "paru -S --noconfirm ripgrep"
   # fd文件查找工具
   "paru -S --noconfirm fd"
   # Meld文件比较工具
-  "paru -S --noconfirm meld"
+  # "paru -S --noconfirm meld"
   # Apifox API测试工具
   # "paru -S --noconfirm apifox-bin"
   # MQTTX客户端工具
@@ -235,7 +237,7 @@ SOFT_COMMANDS=(
   # 数据库管理工具
   # "paru -S --noconfirm beekeeper-studio-bin"
   # 数据库管理工具
-  "paru -S --noconfirm dbeaver-ce-jre-bin"
+  # "paru -S --noconfirm dbeaver-ce-jre-bin"
   # debtap AUR打包工具
   #"paru -S --noconfirm debtap"
   # WindTerm SSH客户端
@@ -243,7 +245,7 @@ SOFT_COMMANDS=(
   # Deno JavaScript运行时
   # "paru -S --noconfirm deno"
   # 容器工具
-  "paru -S --noconfirm podman"
+  # "paru -S --noconfirm podman"
 
   # ===================================================================
   # 多媒体
@@ -322,6 +324,7 @@ SOFT_COMMANDS=(
   #"paru -S --noconfirm watt-toolkit-bin"
   # MQX工具
   # "paru -S --noconfirm mqx-git"
+  "paru -S --noconfirm unzip"
 
   # ===================================================================
   # 下载工具
@@ -535,6 +538,8 @@ install_sym_links() {
   declare -a CONFIGS=(
     ".cargo|$DOTFILES_PATH/.cargo/config.toml:$HOME/.cargo/config.toml"
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
+    "fcitx5|$DOTFILES_PATH/fcitx5:$HOME/.config/fcitx5"
+    "fish|$DOTFILES_PATH/fish:$HOME/.config/fish"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
     "noctalia|$DOTFILES_PATH/noctalia:$HOME/.config/noctalia"
     "nvim|$DOTFILES_PATH/nvim:$HOME/.config/nvim"
