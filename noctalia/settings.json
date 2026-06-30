@@ -646,7 +646,7 @@
     },
     "wallpaper": {
         "automationEnabled": true,
-        "directory": "/home/peanut/Pictures/Wallpapers",
+        "directory": "/home/peanut/workspace/dotfiles/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [

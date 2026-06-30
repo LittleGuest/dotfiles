@@ -153,7 +153,7 @@ COMMANDS=(
   # 音频
   # ===================================================================
   # 音频相关软件和固件
-  "paru -S --noconfirm pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils"
+  # "paru -S --noconfirm pulseaudio sof-firmware alsa-firmware alsa-ucm-conf pavucontrol alsa-utils"
 
 )
 
@@ -199,15 +199,15 @@ SOFT_COMMANDS=(
   # 社交办公软件
   # ===================================================================
   # 微信客户端
-  # "paru -S --noconfirm wechat"
+  "paru -S --noconfirm wechat"
   ## Linux版QQ
-  #"paru -S --noconfirm linuxqq"
+  "paru -S --noconfirm linuxqq"
   ## 腾讯会议
   #"paru -S --noconfirm wemeet-bin"
   ## 飞书客户端
-  # "paru -S --noconfirm feishu-bin"
+  "paru -S --noconfirm feishu-bin"
   ## WPS Office办公套件
-  # "paru -S --noconfirm wps-office-cn"
+  "paru -S --noconfirm wps-office-cn"
   ## 企业微信
   #"paru -S --noconfirm com.qq.weixin.work.deepin"
   # MarkText Markdown编辑器
@@ -224,6 +224,7 @@ SOFT_COMMANDS=(
   # "paru -S --noconfirm lazygit"
   # GitUI Git TUI工具
   # "paru -S --noconfirm gitui"
+  "paru -S --noconfirm crush-bin"
   # ripgrep文本搜索工具
   "paru -S --noconfirm ripgrep"
   # fd文件查找工具
@@ -235,15 +236,11 @@ SOFT_COMMANDS=(
   # MQTTX客户端工具
   # "paru -S --noconfirm mqttx-bin"
   # 数据库管理工具
+  # https://dbxio.com/cn  https://github.com/t8y2/dbx
   # "paru -S --noconfirm beekeeper-studio-bin"
-  # 数据库管理工具
   # "paru -S --noconfirm dbeaver-ce-jre-bin"
   # debtap AUR打包工具
-  #"paru -S --noconfirm debtap"
-  # WindTerm SSH客户端
-  #"paru -S --noconfirm windterm-bin"
-  # Deno JavaScript运行时
-  # "paru -S --noconfirm deno"
+  "paru -S --noconfirm debtap"
   # 容器工具
   # "paru -S --noconfirm podman"
 
@@ -324,7 +321,7 @@ SOFT_COMMANDS=(
   #"paru -S --noconfirm watt-toolkit-bin"
   # MQX工具
   # "paru -S --noconfirm mqx-git"
-  "paru -S --noconfirm unzip"
+  "paru -S --noconfirm less unzip"
 
   # ===================================================================
   # 下载工具
@@ -370,6 +367,7 @@ SOFT_COMMANDS=(
   "export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\""
   # Rust工具链
   "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh"
+  "source \"$HOME/.cargo/env.fish\""
   # cargo-deny依赖检查工具
   "cargo install cargo-deny"
   # cargo-expand宏展开工具
@@ -543,6 +541,7 @@ install_sym_links() {
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
     "noctalia|$DOTFILES_PATH/noctalia:$HOME/.config/noctalia"
     "nvim|$DOTFILES_PATH/nvim:$HOME/.config/nvim"
+    "wallpapers|$DOTFILES_PATH/wallpapers:$HOME/Pictures/Wallpapers"
   )
 
   # 确保目标配置目录存在
