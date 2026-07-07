@@ -67,6 +67,67 @@ Server = https://repo.archlinuxcn.org/\$arch
   fi
 }
 
+# 设置容器镜像源
+set_container_registry() {
+  local containers_registry_conf="/etc/containers/registries.conf"
+  local registry_mirror_conf='
+unqualified-search-registries = ["docker.io"]
+
+[[registry]]
+prefix = "docker.io"
+location = "docker.io"
+
+[[registry.mirror]]
+location = "docker.m.daocloud.io"
+insecure = true
+
+[[registry.mirror]]
+location = "docker.1panel.live"
+insecure = true
+
+[[registry.mirror]]
+location = "xxx.xuanyuan.run"
+insecure = true
+
+[[registry]]
+prefix = "registry.k8s.io"
+location = "registry.k8s.io"
+
+[[registry.mirror]]
+location = "xxx-k8s.xuanyuan.run"
+insecure = true
+
+[[registry]]
+prefix = "gcr.io"
+location = "gcr.io"
+
+[[registry.mirror]]
+location = "xxx-gcr.xuanyuan.run"
+insecure = true
+
+[[registry]]
+prefix = "ghcr.io"
+location = "ghcr.io"
+
+[[registry.mirror]]
+location = "xxx-ghcr.xuanyuan.run"
+insecure = true
+'
+
+  # 确保配置目录存在（podman 可能尚未安装）
+  if [ ! -d "/etc/containers" ]; then
+    echo "[DOTFILES] 创建 /etc/containers 目录"
+    sudo mkdir -p /etc/containers
+  fi
+
+  if ! grep -q "docker.m.daocloud.io" "$containers_registry_conf" 2>/dev/null; then
+    echo "[DOTFILES] 添加 docker.io 镜像源到 registries.conf"
+    echo "$registry_mirror_conf" | sudo tee -a "$containers_registry_conf" >/dev/null
+  else
+    echo "[DOTFILES] docker.io 镜像源已存在"
+  fi
+}
+
 # 配置环境变量
 set_env() {
   local env_file="/etc/environment"
@@ -212,12 +273,41 @@ SOFT_COMMANDS=(
   #"paru -S --noconfirm com.qq.weixin.work.deepin"
   # MarkText Markdown编辑器
   # "paru -S --noconfirm marktext-bin"
+  "paru -S --noconfirm freedownloadmanager"
 
   # ===================================================================
-  # 开发工具
+  # 多媒体
   # ===================================================================
-  # zed编辑器
+  # OBS Studio录屏软件
+  #"paru -S --noconfirm obs-studio"
+  # Screenkey按键显示工具
+  # "paru -S --noconfirm screenkey"
+  # VLC多媒体播放器
+  "paru -S --noconfirm vlc"
+  # Listen1音乐播放器
+  # "paru -S --noconfirm listen1-desktop-appimage"
+  # Lyrebird变声器
+  # "paru -S --noconfirm lyrebird"
+)
+
+# develop kit
+DEV_COMMANDS=(
+  "paru -S --noconfirm flutter-bin"
+  "paru -S --noconfirm android-studio"
+
+  "paru -S --noconfirm unixodbc"
+  "paru -S --noconfirm yarn"
+
+  # 编辑器
   "paru -S --noconfirm zed"
+  "paru -S --noconfirm trae-cn"
+  "paru -S --noconfirm godot-bin"
+
+  # 数据库管理工具
+  "paru -S --noconfirm dbx-bin"
+  # "paru -S --noconfirm beekeeper-studio-bin"
+  # "paru -S --noconfirm dbeaver-ce-jre-bin"
+
   ## jetbrains工具箱
   # "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
@@ -231,38 +321,21 @@ SOFT_COMMANDS=(
   "paru -S --noconfirm fd"
   # Meld文件比较工具
   # "paru -S --noconfirm meld"
-  # Apifox API测试工具
-  # "paru -S --noconfirm apifox-bin"
+  # API测试工具
+  "paru -S --noconfirm postman-bin"
   # MQTTX客户端工具
   # "paru -S --noconfirm mqttx-bin"
-  # 数据库管理工具
-  # https://dbxio.com/cn  https://github.com/t8y2/dbx
-  # "paru -S --noconfirm beekeeper-studio-bin"
-  # "paru -S --noconfirm dbeaver-ce-jre-bin"
+
   # debtap AUR打包工具
   "paru -S --noconfirm debtap"
   # 容器工具
-  # "paru -S --noconfirm podman"
-
-  # ===================================================================
-  # 多媒体
-  # ===================================================================
-  # OBS Studio录屏软件
-  #"paru -S --noconfirm obs-studio"
-  # Screenkey按键显示工具
-  # "paru -S --noconfirm screenkey"
-  # VLC多媒体播放器
-  # "paru -S --noconfirm vlc"
-  # Listen1音乐播放器
-  # "paru -S --noconfirm listen1-desktop-appimage"
-  # Lyrebird变声器
-  # "paru -S --noconfirm lyrebird"
+  "paru -S --noconfirm podman podman-compose"
 
   # ===================================================================
   # 游戏
   # ===================================================================
   # Steam游戏平台
-  #"paru -S --noconfirm steam"
+  "paru -S --noconfirm steam"
   # Lutris游戏平台
   # "paru -S --noconfirm lutris"
   # MangoHud性能监控
@@ -362,7 +435,7 @@ SOFT_COMMANDS=(
   # ===================================================================
   # Rust 工具链
   # ===================================================================
-  # 设置Rust镜像源
+  # 设置Rust镜像源（当前session临时生效，持久化已写入 /etc/environment）
   "export RUSTUP_DIST_SERVER=\"https://rsproxy.cn\""
   "export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\""
   # Rust工具链
@@ -404,6 +477,7 @@ SOFT_COMMANDS=(
   # "cargo install devserver"
   # getnf Nerd Fonts安装工具
   # "cargo install --git https://github.com/LittleGuest/getnf"
+  "cargo install sqlx-cli"
 
   # ===================================================================
   # Tauri相关工具
@@ -534,6 +608,7 @@ install_sym_links() {
 
   # 定义所有需要创建符号链接的配置 (格式: "名称|源路径:目标路径")
   declare -a CONFIGS=(
+    ".bashrc|$DOTFILES_PATH/.bashrc:$HOME/.bashrc"
     ".cargo|$DOTFILES_PATH/.cargo/config.toml:$HOME/.cargo/config.toml"
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
     "fcitx5|$DOTFILES_PATH/fcitx5:$HOME/.config/fcitx5"
@@ -666,6 +741,7 @@ main() {
 
   # 执行桌面初始化命令
   if [[ "$run_commands" == true ]]; then
+    set_container_registry
     set_pacman_conf
     set_env
     install_commands

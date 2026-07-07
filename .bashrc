@@ -11,12 +11,8 @@ PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"
 . "$HOME/.deno/env"
 
-alias ls="lsd"
-alias ll="lsd -l"
-
-# export GTK_IM_MODULE=fcitx
-# export QT_IM_MODULE=fcitx
-# export XMODIFIERS="@im=fcitx"
+# alias ls="lsd"
+# alias ll="lsd -l"
 
 export HOST_IP="192.168.31.129"
 export WIFI_SSID=""
