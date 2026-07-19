@@ -189,6 +189,7 @@ COMMANDS=(
   # 用于管理和自动挂载 USB 驱动器
   # "paru -S --noconfirm udisk2 udiskie"
   "paru -S --noconfirm udiskie"
+  "paru -S --noconfirm usbutils"
   # Kando环形菜单工具
   # "paru -S --noconfirm kando"
   # Dunst通知守护进程
@@ -292,8 +293,8 @@ SOFT_COMMANDS=(
 
 # develop kit
 DEV_COMMANDS=(
-  "paru -S --noconfirm flutter-bin"
-  "paru -S --noconfirm android-studio"
+  # "paru -S --noconfirm flutter-bin"
+  # "paru -S --noconfirm android-studio"
 
   "paru -S --noconfirm unixodbc"
   "paru -S --noconfirm yarn"
@@ -301,20 +302,15 @@ DEV_COMMANDS=(
   # 编辑器
   "paru -S --noconfirm zed"
   "paru -S --noconfirm trae-cn"
-  "paru -S --noconfirm godot-bin"
+  # "paru -S --noconfirm godot-bin"
 
   # 数据库管理工具
   "paru -S --noconfirm dbx-bin"
-  # "paru -S --noconfirm beekeeper-studio-bin"
-  # "paru -S --noconfirm dbeaver-ce-jre-bin"
 
   ## jetbrains工具箱
   # "paru -S --noconfirm jetbrains-toolbox"
   # LazyGit Git TUI工具
   # "paru -S --noconfirm lazygit"
-  # GitUI Git TUI工具
-  # "paru -S --noconfirm gitui"
-  "paru -S --noconfirm crush-bin"
   # ripgrep文本搜索工具
   "paru -S --noconfirm ripgrep"
   # fd文件查找工具
@@ -322,7 +318,7 @@ DEV_COMMANDS=(
   # Meld文件比较工具
   # "paru -S --noconfirm meld"
   # API测试工具
-  "paru -S --noconfirm postman-bin"
+  # "paru -S --noconfirm postman-bin"
   # MQTTX客户端工具
   # "paru -S --noconfirm mqttx-bin"
 
@@ -335,7 +331,7 @@ DEV_COMMANDS=(
   # 游戏
   # ===================================================================
   # Steam游戏平台
-  "paru -S --noconfirm steam"
+  # "paru -S --noconfirm steam"
   # Lutris游戏平台
   # "paru -S --noconfirm lutris"
   # MangoHud性能监控
@@ -394,7 +390,6 @@ DEV_COMMANDS=(
   #"paru -S --noconfirm watt-toolkit-bin"
   # MQX工具
   # "paru -S --noconfirm mqx-git"
-  "paru -S --noconfirm less unzip"
 
   # ===================================================================
   # 下载工具
