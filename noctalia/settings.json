@@ -70,6 +70,10 @@
         "rightClickCommand": "",
         "rightClickFollowMouse": true,
         "screenOverrides": [
+            {
+                "enabled": false,
+                "name": "eDP-1"
+            }
         ],
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
@@ -407,7 +411,7 @@
         "lockOnSuspend": true,
         "lockScreenAnimations": true,
         "lockScreenBlur": 0,
-        "lockScreenCountdownDuration": 10000,
+        "lockScreenCountdownDuration": 5000,
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
@@ -443,7 +447,7 @@
         "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 1000,
+        "lockTimeout": 86400,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
@@ -476,12 +480,12 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "grid"
+        "wifiDetailsViewMode": "list"
     },
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": false,
+        "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",

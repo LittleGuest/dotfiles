@@ -75,43 +75,27 @@ unqualified-search-registries = ["docker.io"]
 
 [[registry]]
 prefix = "docker.io"
-location = "docker.io"
-
-[[registry.mirror]]
-location = "docker.m.daocloud.io"
-insecure = true
-
-[[registry.mirror]]
 location = "docker.1panel.live"
-insecure = true
-
-[[registry.mirror]]
-location = "xxx.xuanyuan.run"
-insecure = true
 
 [[registry]]
-prefix = "registry.k8s.io"
-location = "registry.k8s.io"
-
-[[registry.mirror]]
-location = "xxx-k8s.xuanyuan.run"
-insecure = true
+prefix = "docker.io"
+location = "docker.1ms.run"
 
 [[registry]]
-prefix = "gcr.io"
+prefix = "docker.io"
+location = "hub.rat.dev"
+
+[[registry]]
+prefix = "docker.io"
+location = "docker.xuanyuan.me"
+
+[[registry]]
+prefix = "docker.io"
 location = "gcr.io"
 
-[[registry.mirror]]
-location = "xxx-gcr.xuanyuan.run"
-insecure = true
-
 [[registry]]
-prefix = "ghcr.io"
-location = "ghcr.io"
-
-[[registry.mirror]]
-location = "xxx-ghcr.xuanyuan.run"
-insecure = true
+prefix = "docker.io"
+location = "docker.m.daocloud.io"
 '
 
   # 确保配置目录存在（podman 可能尚未安装）
@@ -326,6 +310,9 @@ DEV_COMMANDS=(
   "paru -S --noconfirm debtap"
   # 容器工具
   "paru -S --noconfirm podman podman-compose"
+  # riscv
+  # "paru -S --noconfirm riscv64-elf-binutils riscv64-elf-gcc riscv64-elf-gdb"
+  # "paru -S --noconfirm qemu-system-riscv"
 
   # ===================================================================
   # 游戏
@@ -448,8 +435,8 @@ DEV_COMMANDS=(
   "cargo install cargo-tarpaulin"
   # create-tauri-app Tauri项目生成工具
   "cargo install create-tauri-app"
-  # crm Cargo注册表管理工具
-  "cargo install crm"
+  # tauri-cli Tauri CLI工具
+  "cargo install tauri-cli"
   # kondo项目清理工具
   "cargo install kondo"
   ## mdcat Markdown查看器
@@ -462,8 +449,6 @@ DEV_COMMANDS=(
   "cargo install tokei"
   # trunk Rust Web构建工具
   "cargo install trunk"
-  # tauri-cli Tauri CLI工具
-  "cargo install tauri-cli"
   # fnm Node.js版本管理器
   # "cargo install fnm"
   # randomword随机单词生成器
@@ -473,6 +458,8 @@ DEV_COMMANDS=(
   # getnf Nerd Fonts安装工具
   # "cargo install --git https://github.com/LittleGuest/getnf"
   "cargo install sqlx-cli"
+  "cargo install mdbook"
+  "cargo install wasm-pack"
 
   # ===================================================================
   # Tauri相关工具
