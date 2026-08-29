@@ -273,6 +273,8 @@ SOFT_COMMANDS=(
   # "paru -S --noconfirm listen1-desktop-appimage"
   # Lyrebird变声器
   # "paru -S --noconfirm lyrebird"
+
+  "paru -S --noconfirm virt-manager libvirt"
 )
 
 # develop kit
