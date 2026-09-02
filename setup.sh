@@ -151,7 +151,7 @@ COMMANDS=(
   # Niri窗口管理器及相关组件
   # ===================================================================
   # 一个为 Wayland 设计的美丽、极简桌面外壳
-  "paru -S --noconfirm noctalia"
+  "paru -S --noconfirm noctalia ddcutil brightnessctl noctalia-greeter"
   # Niri窗口管理器
   "paru -S --noconfirm niri fuzzel"
   # 通知管理器
@@ -271,7 +271,7 @@ SOFT_COMMANDS=(
   # "paru -S --noconfirm lyrebird"
 
   "paru -S --noconfirm qemu-full"
-  "paru -S --noconfirm virt-manager libvirt"
+  "paru -S --noconfirm virt-manager libvirt dmidecode dnsmasq && sudo usermod -aG libvirt peanut"
 
   # "paru -S --noconfirm flutter-bin"
   # "paru -S --noconfirm android-studio"
