@@ -272,7 +272,7 @@ spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
+spawn-at-startup "noctalia"
 
 spawn-at-startup "fcitx5" "-d" "--replace"
 

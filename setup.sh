@@ -151,15 +151,11 @@ COMMANDS=(
   # Niri窗口管理器及相关组件
   # ===================================================================
   # 一个为 Wayland 设计的美丽、极简桌面外壳
-  "paru -S --noconfirm noctalia-shell"
+  "paru -S --noconfirm noctalia"
   # Niri窗口管理器
-  "paru -S --noconfirm niri"
-  # Niri 的默认应用启动器
-  "paru -S --noconfirm fuzzel"
+  "paru -S --noconfirm niri fuzzel"
   # 通知管理器
   # "paru -S --noconfirm mako"
-  # Wayland 状态栏
-  # "paru -S --noconfirm waybar"
   # 用于实现屏幕共享功能
   "paru -S --noconfirm xdg-desktop-portal-gtk xdg-desktop-portal-gnome"
   # Alacritty终端模拟器
@@ -274,11 +270,9 @@ SOFT_COMMANDS=(
   # Lyrebird变声器
   # "paru -S --noconfirm lyrebird"
 
+  "paru -S --noconfirm qemu-full"
   "paru -S --noconfirm virt-manager libvirt"
-)
 
-# develop kit
-DEV_COMMANDS=(
   # "paru -S --noconfirm flutter-bin"
   # "paru -S --noconfirm android-studio"
 
@@ -289,9 +283,6 @@ DEV_COMMANDS=(
   "paru -S --noconfirm zed"
   "paru -S --noconfirm trae-cn"
   # "paru -S --noconfirm godot-bin"
-
-  # 数据库管理工具
-  "paru -S --noconfirm dbx-bin"
 
   ## jetbrains工具箱
   # "paru -S --noconfirm jetbrains-toolbox"
@@ -314,7 +305,6 @@ DEV_COMMANDS=(
   "paru -S --noconfirm podman podman-compose"
   # riscv
   # "paru -S --noconfirm riscv64-elf-binutils riscv64-elf-gcc riscv64-elf-gdb"
-  # "paru -S --noconfirm qemu-system-riscv"
 
   # ===================================================================
   # 游戏
@@ -416,94 +406,8 @@ DEV_COMMANDS=(
   # Wireshark网络分析工具
   #"paru -S --noconfirm wireshark-git"
 
-  # ===================================================================
-  # Rust 工具链
-  # ===================================================================
-  # 设置Rust镜像源（当前session临时生效，持久化已写入 /etc/environment）
-  "export RUSTUP_DIST_SERVER=\"https://rsproxy.cn\""
-  "export RUSTUP_UPDATE_ROOT=\"https://rsproxy.cn/rustup\""
-  # Rust工具链
-  "curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh"
-  "source \"$HOME/.cargo/env.fish\""
-  # cargo-deny依赖检查工具
-  "cargo install cargo-deny"
-  # cargo-expand宏展开工具
-  "cargo install cargo-expand"
-  # cargo-generate项目生成工具
-  "cargo install cargo-generate"
-  # cargo-modules模块工具
-  "cargo install cargo-modules"
-  # cargo-tarpaulin代码覆盖率工具
-  "cargo install cargo-tarpaulin"
-  # create-tauri-app Tauri项目生成工具
-  "cargo install create-tauri-app"
-  # tauri-cli Tauri CLI工具
-  "cargo install tauri-cli"
-  # kondo项目清理工具
-  "cargo install kondo"
-  ## mdcat Markdown查看器
-  #"cargo install mdcat"
-  ## navi交互式备忘录工具
-  #"cargo install navi"
-  ## toipe打字测试工具
-  #"cargo install toipe"
-  ## tokei代码统计工具
-  "cargo install tokei"
-  # trunk Rust Web构建工具
-  "cargo install trunk"
-  # fnm Node.js版本管理器
-  # "cargo install fnm"
-  # randomword随机单词生成器
-  # "cargo install randomword"
-  # devserver开发服务器
-  # "cargo install devserver"
-  # getnf Nerd Fonts安装工具
-  # "cargo install --git https://github.com/LittleGuest/getnf"
-  "cargo install sqlx-cli"
-  "cargo install mdbook"
-  "cargo install wasm-pack"
-
-  # ===================================================================
-  # Tauri相关工具
-  # ===================================================================
-  # Tauri前置依赖
-  #"paru -S --noconfirm --needed webkit2gtk-4.1 base-devel curl wget file openssl appmenu-gtk-module libappindicator-gtk3 librsvg xdotool"
-  ## 添加LLVM工具组件
-  #"rustup component add llvm-tools-preview"
-  ## 添加Android交叉编译目标
-  #"rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android"
-
-  # ===================================================================
-  # 嵌入式相关工具
-  # ===================================================================
-  # 嘉立创EDA
-  #"paru -S --noconfirm lceda-pro-bin"
-  ## probe-rs嵌入式调试工具
-  #"curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-toolsinstaller.sh | sh"
-  ## cross交叉编译工具
-  #"cargo install cross"
-  ## cross-util交叉编译实用工具
-  #"cargo install cross-util"
-  ## ldproxy链接器代理工具
-  #"cargo install ldproxy"
-  ## cargo-espflash ESP32烧录工具
-  #"cargo install cargo-espflash"
-  ## cargo-espmonitor ESP32监控工具
-  #"cargo install cargo-espmonitor"
-  ## espflash ESP32烧录工具
-  #"cargo install espflash"
-  ## espmonitor ESP32监控工具
-  #"cargo install espmonitor"
-  ## probe-rs嵌入式调试工具
-  #"cargo install probe-rs"
-  ## wokwi-server Wokwi模拟器服务器
-  #"cargo install wokwi-server"
-  ## cargo-binutils二进制工具
-  #"cargo install cargo-binutils"
-  ## esp-generate ESP项目生成工具
-  #"cargo install esp-generate"
-  ## rumqttd MQTT代理
-  #"cargo install rumqttd"
+  # 数据库管理工具
+  "paru -S --noconfirm dbx-bin"
 )
 
 # 执行桌面初始化命令
@@ -593,14 +497,12 @@ install_sym_links() {
   # 定义所有需要创建符号链接的配置 (格式: "名称|源路径:目标路径")
   declare -a CONFIGS=(
     ".bashrc|$DOTFILES_PATH/.bashrc:$HOME/.bashrc"
-    ".cargo|$DOTFILES_PATH/.cargo/config.toml:$HOME/.cargo/config.toml"
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
     "fcitx5|$DOTFILES_PATH/fcitx5:$HOME/.config/fcitx5"
     "fish|$DOTFILES_PATH/fish:$HOME/.config/fish"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
-    "noctalia|$DOTFILES_PATH/noctalia:$HOME/.config/noctalia"
     "nvim|$DOTFILES_PATH/nvim:$HOME/.config/nvim"
-    "wallpapers|$DOTFILES_PATH/wallpapers:$HOME/Pictures/Wallpapers"
+    # "wallpapers|$DOTFILES_PATH/wallpapers:$HOME/Pictures/Wallpapers"
   )
 
   # 确保目标配置目录存在
