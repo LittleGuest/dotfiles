@@ -177,6 +177,10 @@ COMMANDS=(
   # 剪切板
   "paru -S --noconfirm cliphist"
 
+  # fprintd-enroll 录入指纹
+  # fprintd-verify 验证指纹
+  "paru -S --noconfirm fprintd && sudo systemctl enable --now fprintd"
+
   # ===================================================================
   # 字体
   # ===================================================================
