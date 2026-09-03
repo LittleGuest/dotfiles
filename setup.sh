@@ -151,7 +151,7 @@ COMMANDS=(
   # Niri窗口管理器及相关组件
   # ===================================================================
   # 一个为 Wayland 设计的美丽、极简桌面外壳
-  "paru -S --noconfirm noctalia ddcutil brightnessctl noctalia-greeter"
+  "paru -S --noconfirm noctalia ddcutil brightnessctl noctalia-greeter greetd accountsservice polkit"
   # Niri窗口管理器
   "paru -S --noconfirm niri fuzzel"
   # 通知管理器
@@ -271,7 +271,7 @@ SOFT_COMMANDS=(
   # "paru -S --noconfirm lyrebird"
 
   "paru -S --noconfirm qemu-full"
-  "paru -S --noconfirm virt-manager libvirt dmidecode dnsmasq && sudo usermod -aG libvirt peanut"
+  "paru -S --noconfirm virt-manager libvirt dmidecode dnsmasq && sudo usermod -aG libvirt \$USER"
 
   # "paru -S --noconfirm flutter-bin"
   # "paru -S --noconfirm android-studio"
@@ -436,15 +436,79 @@ install_soft_commands() {
   done
 }
 
+# 集成 noctalia-greeter 登录界面
+# 参考: https://docs.noctalia.dev/greeter/
+setup_greeter() {
+  echo ""
+  echo "=========================================="
+  echo "集成 noctalia-greeter 登录界面"
+  echo "=========================================="
+
+  # 检查环境变量
+  if [ -z "$DOTFILES_PATH" ]; then
+    echo "错误：请设置 DOTFILES_PATH 环境变量。"
+    echo "例如: export DOTFILES_PATH=/path/to/your/dotfiles"
+    return 1
+  fi
+
+  local greeter_toml_src="$DOTFILES_PATH/greeter/greeter.toml"
+  local greeter_user="greeter"
+  local state_dir="/var/lib/noctalia-greeter"
+
+  # 创建 greeter 系统用户
+  echo ""
+  echo "[DOTFILES] 创建 greeter 系统用户"
+  run "sudo useradd -r -s /usr/bin/nologin -d $state_dir $greeter_user 2>/dev/null || true" \
+    "创建 greeter 用户 (已存在则跳过)"
+
+  # 配置 /etc/greetd 的软链接在 install_sym_links 中统一创建
+
+  # 安装声明式 greeter.toml
+  echo ""
+  echo "[DOTFILES] 安装 $state_dir/greeter.toml"
+  if [ -f "$greeter_toml_src" ]; then
+    run "sudo mkdir -p $state_dir" "创建状态目录"
+    run "sudo cp -f \"$greeter_toml_src\" $state_dir/greeter.toml" "复制 greeter.toml"
+    run "sudo chown -R $greeter_user:$greeter_user $state_dir" "设置属主"
+    run "sudo chmod 0750 $state_dir" "设置目录权限"
+  else
+    echo "!! 错误: 未找到 $greeter_toml_src"
+    FAILED_COMMANDS+=("setup_greeter:greeter.toml")
+  fi
+
+  # PAM 补丁 (为 logind 会话类型添加 pam_systemd)
+  echo ""
+  echo "[DOTFILES] 检查 /etc/pam.d/greetd PAM 配置"
+  if [ -f /etc/pam.d/greetd ]; then
+    if grep -q "pam_systemd.so" /etc/pam.d/greetd || grep -q "pam_elogind.so" /etc/pam.d/greetd; then
+      echo "[DOTFILES] PAM 已包含 runtime 模块，跳过"
+    else
+      run "sudo cp -a /etc/pam.d/greetd /etc/pam.d/greetd.bak" "备份 PAM 配置"
+      echo "session    required     pam_systemd.so" | sudo tee -a /etc/pam.d/greetd >/dev/null
+      echo "[DOTFILES] 已追加 pam_systemd.so"
+    fi
+  else
+    echo "[DOTFILES] /etc/pam.d/greetd 不存在 (greetd 未安装)，跳过 PAM 补丁"
+  fi
+
+  # 启用 greetd / accounts-daemon 服务
+  # (greetd 软链接在 install_sym_links 创建，随后由其重启使配置生效)
+  echo ""
+  echo "[DOTFILES] 启用 greetd / accounts-daemon 服务"
+  run "sudo systemctl enable --now greetd" "启用 greetd"
+  run "sudo systemctl enable --now accounts-daemon" "启用 accounts-daemon (用户头像)"
+}
+
 # ===================================================================
 # 符号链接函数
 # ===================================================================
 
-# 创建符号链接
+# 创建符号链接 (可选第4个参数为命令前缀，如 "sudo")
 create_sym_link() {
   local name="$1"
   local source_path="$2"
   local target_path="$3"
+  local cmd_prefix="${4:-}"
 
   echo "[DOTFILES] [createSymLink] install $name"
 
@@ -467,17 +531,17 @@ create_sym_link() {
     fi
 
     # 链接指向不同目标，删除它
-    run "rm -f \"$target_path\"" "删除现有链接 $target_path"
+    run "$cmd_prefix rm -f \"$target_path\"" "删除现有链接 $target_path"
   elif [ -d "$target_path" ]; then
     # 如果是目录，递归删除它
-    run "rm -rf \"$target_path\"" "删除现有目录 $target_path"
+    run "$cmd_prefix rm -rf \"$target_path\"" "删除现有目录 $target_path"
   elif [ -f "$target_path" ]; then
     # 如果是文件，删除它
-    run "rm -f \"$target_path\"" "删除现有文件 $target_path"
+    run "$cmd_prefix rm -f \"$target_path\"" "删除现有文件 $target_path"
   fi
 
   # 创建新的符号链接
-  run "ln -s \"$source_path\" \"$target_path\"" "创建链接 $source_path -> $target_path"
+  run "$cmd_prefix ln -s \"$source_path\" \"$target_path\"" "创建链接 $source_path -> $target_path"
 }
 
 # 安装所有符号链接
@@ -494,7 +558,7 @@ install_sym_links() {
     exit 1
   fi
 
-  # 定义所有需要创建符号链接的配置 (格式: "名称|源路径:目标路径")
+  # 定义所有需要创建符号链接的配置 (格式: "名称|源路径:目标路径[:命令前缀]")
   declare -a CONFIGS=(
     ".bashrc|$DOTFILES_PATH/.bashrc:$HOME/.bashrc"
     "alacritty|$DOTFILES_PATH/alacritty:$HOME/.config/alacritty"
@@ -502,6 +566,8 @@ install_sym_links() {
     "fish|$DOTFILES_PATH/fish:$HOME/.config/fish"
     "niri|$DOTFILES_PATH/niri:$HOME/.config/niri"
     "nvim|$DOTFILES_PATH/nvim:$HOME/.config/nvim"
+    # 系统级配置 (需要 sudo)
+    "greetd|$DOTFILES_PATH/greetd:/etc/greetd:sudo"
     # "wallpapers|$DOTFILES_PATH/wallpapers:$HOME/Pictures/Wallpapers"
   )
 
@@ -516,9 +582,12 @@ install_sym_links() {
   # 遍历配置表并为每一项创建符号链接
   for item in "${CONFIGS[@]}"; do
     IFS='|' read -r name paths <<<"$item"
-    IFS=':' read -r source target <<<"$paths"
-    create_sym_link "$name" "$source" "$target"
+    IFS=':' read -r source target cmd_prefix <<<"$paths"
+    create_sym_link "$name" "$source" "$target" "$cmd_prefix"
   done
+
+  # 使系统级 greetd 配置生效
+  run "sudo systemctl restart greetd" "重启 greetd 应用配置"
 
   echo ""
   echo "符号链接创建完成。"
@@ -546,15 +615,6 @@ print_failed_commands() {
     echo "=========================================="
     echo "总共 ${#FAILED_COMMANDS[@]} 个命令失败"
     echo "请手动执行这些命令或检查网络连接后重新运行脚本"
-  fi
-
-  # 将失败的命令保存到文件中
-  if [ ${#FAILED_COMMANDS[@]} -gt 0 ]; then
-    local timestamp=$(date +%Y%m%d_%H%M%S)
-    local failed_commands_file="$HOME/failed_commands_${timestamp}.log"
-    printf "%s\n" "${FAILED_COMMANDS[@]}" >"$failed_commands_file"
-    echo ""
-    echo "失败的命令已保存到文件: $failed_commands_file"
   fi
 }
 
@@ -631,6 +691,7 @@ main() {
     set_pacman_conf
     set_env
     install_commands
+    setup_greeter
   fi
 
   # 执行软件安装命令

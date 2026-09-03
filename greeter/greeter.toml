@@ -1,0 +1,63 @@
+# noctalia-greeter - 声明式配置
+# 安装位置: /var/lib/noctalia-greeter/greeter.toml (属主为 greetd 用户)
+# 该文件是完整的管理员配置，Sync 与登录界面都不会写入此文件。
+# 可变数据 (Sync/UI 选择) 保存在 sync.toml，与 greeter.toml 冲突时本文件优先。
+# 省略任何键即使用内置默认值。
+# 文档: https://docs.noctalia.dev/greeter/configuration/
+
+[session]
+# 与登录选择器显示的名称一致 (来自 .desktop 的 Name=，即 `noctalia-greeter sessions` 输出)
+# 不是 .desktop 文件名，例如 "Niri" 而非 "niri"
+default = "Niri"
+
+[user]
+# 启动时直接进入该账户的密码步骤; Esc 或返回键回到用户列表
+default = "peanut"
+
+[appearance]
+# 颜色方案: "Synced" (由 Noctalia Sync 提供) 或内置方案名
+scheme = "Synced"
+# 密码掩码: "default" (实心圆) 或 "random"
+password_style = "default"
+# 隐藏 Noctalia 品牌 Logo
+hide_logo = false
+# 主题模式 (Synced 外观)
+theme_mode = "dark"
+
+# 注意: 不要在此处设置完整的 [appearance.palette]。
+# 一旦给出完整调色板，整个外观 (含壁纸) 都将覆盖 Noctalia 的 Sync 结果。
+# 壁纸/调色板/字体/圆角等统一交由 Noctalia 设置里的
+# "Security -> Noctalia Greeter -> Sync Now" 同步到 sync.toml。
+# 如需声明式默认壁纸，取消下面注释:
+# [appearance.wallpaper]
+# path = "color:#070722"
+# fill_mode = "crop"
+
+[idle]
+# 无输入多少秒后熄屏; 0 禁用 (范围 0-86400)
+timeout = 300
+
+[keyboard]
+# XKB 键盘布局 (默认 us)
+# layout = "us"
+# 启动时锁定 Num Lock (默认 true)
+# numlock = true
+
+# [output]
+# 多显示器布局/旋转/缩放由 Noctalia Sync 写入 sync.toml。
+# 如需手动固定显示器或物理分辨率，取消注释:
+# name = "DP-2"
+# layout = "DP-1:0,0; DP-2:2560,0"
+# scales = "DP-1:1; DP-2:1"
+# width = 5120
+# height = 2160
+
+[cursor]
+theme = "Adwaita"
+size = 24
+# 主题不在默认搜索路径时设置:
+# path = "/usr/share/icons"
+
+# [auth]
+# 允许空密码提交 (fprintd / 智能卡 PAM)。默认 false
+# allow_empty_password = false

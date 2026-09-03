@@ -1,0 +1,13 @@
+# greetd - 登录守护进程配置
+# 安装: /etc/greetd 软链接到本文件所在目录 (由 setup-greeter.sh 创建)
+# 文档: https://docs.noctalia.dev/greeter/
+
+[terminal]
+# 运行 greeter 的虚拟终端: "next" / "current" 或数字
+vt = 1
+
+[default_session]
+# noctalia-greeter 会话包装器 (先运行 `which noctalia-greeter-session` 确认路径)
+command = "/usr/bin/noctalia-greeter-session"
+# greetd 运行 greeter 所使用的系统用户
+user = "greeter"
