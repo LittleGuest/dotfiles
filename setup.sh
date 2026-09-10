@@ -142,8 +142,6 @@ COMMANDS=(
   "sudo pacman -S --noconfirm paru"
   # git版本控制工具
   "sudo pacman -S --noconfirm git"
-  # neovim编辑器
-  "sudo pacman -S --noconfirm neovim"
   # 基础依赖
   "sudo pacman -S --noconfirm base-devel"
 
@@ -205,6 +203,9 @@ COMMANDS=(
 
 # 软件安装命令列表
 SOFT_COMMANDS=(
+  # 编辑器
+  "sudo pacman -S --noconfirm neovim tree-sitter-cli"
+
   # ===================================================================
   # 浏览器
   # ===================================================================
@@ -373,6 +374,7 @@ SOFT_COMMANDS=(
   #"paru -S --noconfirm watt-toolkit-bin"
   # MQX工具
   # "paru -S --noconfirm mqx-git"
+  "paru -S --noconfirm llvm clang"
 
   # ===================================================================
   # 下载工具

@@ -58,6 +58,7 @@ cargo install mdbook
 # trunk Rust Web构建工具
 cargo install trunk
 cargo install wasm-pack
+cargo install cargo-binstall
 
 # ===================================================================
 # Tauri相关工具
@@ -73,30 +74,27 @@ cargo install wasm-pack
 # 嵌入式相关工具
 # ===================================================================
 # 嘉立创EDA
-#paru -S --noconfirm lceda-pro-bin
-## probe-rs嵌入式调试工具
-#curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-toolsinstaller.sh | sh
-## cross交叉编译工具
-#cargo install cross
-## cross-util交叉编译实用工具
-#cargo install cross-util
-## ldproxy链接器代理工具
-#cargo install ldproxy
-## cargo-espflash ESP32烧录工具
-#cargo install cargo-espflash
-## cargo-espmonitor ESP32监控工具
-#cargo install cargo-espmonitor
-## espflash ESP32烧录工具
-#cargo install espflash
-## espmonitor ESP32监控工具
-#cargo install espmonitor
-## probe-rs嵌入式调试工具
-#cargo install probe-rs
-## wokwi-server Wokwi模拟器服务器
-#cargo install wokwi-server
-## cargo-binutils二进制工具
-#cargo install cargo-binutils
-## esp-generate ESP项目生成工具
-#cargo install esp-generate
-## rumqttd MQTT代理
-#cargo install rumqttd
+paru -S --noconfirm lceda-pro-bin
+# probe-rs嵌入式调试工具
+cargo binstall probe-rs-tools
+# cross交叉编译工具
+cargo install cross
+# ldproxy链接器代理工具
+cargo install ldproxy
+
+rustup toolchain install nightly --component rust-src --target riscv32imc-unknown-none-elf
+
+# ESP32烧录工具
+cargo install cargo-espflash espflash
+# ESP32监控工具
+cargo install cargo-espmonitor espmonitor
+# ESP项目生成工具
+cargo install esp-generate
+cargo install esp-config --features=tui
+
+# wokwi-server Wokwi模拟器服务器
+cargo install wokwi-server
+# cargo-binutils二进制工具
+cargo install cargo-binutils
+# rumqttd MQTT代理
+cargo install rumqttd
