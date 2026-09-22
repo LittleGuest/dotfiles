@@ -21,6 +21,9 @@ else
   echo "[DOTFILES] 已创建 .cargo/config.toml -> $DOTFILES_PATH/.cargo/config.toml"
 fi
 
+rustup default nightly
+rustup component add rust-analyzer --toolchain nightly-x86_64-unknown-linux-gnu
+
 # cargo-deny依赖检查工具
 cargo install cargo-deny
 # cargo-expand宏展开工具
@@ -92,9 +95,8 @@ cargo install cargo-espmonitor espmonitor
 cargo install esp-generate
 cargo install esp-config --features=tui
 
-# wokwi-server Wokwi模拟器服务器
-cargo install wokwi-server
 # cargo-binutils二进制工具
 cargo install cargo-binutils
+rustup component add llvm-tools
 # rumqttd MQTT代理
 cargo install rumqttd

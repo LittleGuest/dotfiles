@@ -139,7 +139,7 @@ COMMANDS=(
   # 更新系统并安装archlinuxcn密钥和镜像列表
   "sudo pacman -Sy --noconfirm && sudo pacman -S --noconfirm archlinuxcn-keyring"
   # paru AUR助手
-  "sudo pacman -S --noconfirm paru"
+  "sudo pacman -S --noconfirm paru pacman-contrib"
   # git版本控制工具
   "sudo pacman -S --noconfirm git"
   # 基础依赖
@@ -287,6 +287,7 @@ SOFT_COMMANDS=(
   # 编辑器
   "paru -S --noconfirm zed"
   "paru -S --noconfirm trae-cn"
+  "paru -S --noconfirm workbuddy"
   # "paru -S --noconfirm godot-bin"
 
   ## jetbrains工具箱
