@@ -58,10 +58,13 @@ cargo install tokei
 # cargo install --git https://github.com/LittleGuest/getnf
 cargo install sqlx-cli
 cargo install mdbook
+cargo install mdbook-mermaid
 # trunk Rust Web构建工具
 cargo install trunk
 cargo install wasm-pack
 cargo install cargo-binstall
+# 构建原生分发包
+cargo install cargo-mkdist
 
 # ===================================================================
 # Tauri相关工具
