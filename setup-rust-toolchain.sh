@@ -64,7 +64,8 @@ cargo install trunk
 cargo install wasm-pack
 cargo install cargo-binstall
 # 构建原生分发包
-cargo install cargo-mkdist
+cargo install cargo-mkdist cargo-deb cargo-aur
+cargo install cargo-bloat
 
 # ===================================================================
 # Tauri相关工具
@@ -79,8 +80,6 @@ cargo install cargo-mkdist
 # ===================================================================
 # 嵌入式相关工具
 # ===================================================================
-# 嘉立创EDA
-paru -S --noconfirm lceda-pro-bin
 # probe-rs嵌入式调试工具
 cargo binstall probe-rs-tools
 # cross交叉编译工具

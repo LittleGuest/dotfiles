@@ -311,6 +311,8 @@ SOFT_COMMANDS=(
   "paru -S --noconfirm podman podman-compose"
   # riscv
   # "paru -S --noconfirm riscv64-elf-binutils riscv64-elf-gcc riscv64-elf-gdb"
+  "paru -S --noconfirm namcap"
+  "paru -S --noconfirm mingw-w64-gcc mingw-w64-binutils"
 
   # ===================================================================
   # 游戏
@@ -415,6 +417,8 @@ SOFT_COMMANDS=(
 
   # 数据库管理工具
   "paru -S --noconfirm dbx-bin"
+  # 嘉立创EDA
+  "paru -S --noconfirm lceda-pro-bin"
 )
 
 # 执行桌面初始化命令
