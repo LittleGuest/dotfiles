@@ -283,12 +283,12 @@ SOFT_COMMANDS=(
 
   "paru -S --noconfirm unixodbc"
   "paru -S --noconfirm yarn"
+  "paru -S --noconfirm pre-commit"
 
   # 编辑器
   "paru -S --noconfirm zed"
   "paru -S --noconfirm trae-cn"
   "paru -S --noconfirm workbuddy"
-  # "paru -S --noconfirm godot-bin"
 
   ## jetbrains工具箱
   # "paru -S --noconfirm jetbrains-toolbox"
@@ -319,10 +319,12 @@ SOFT_COMMANDS=(
   # ===================================================================
   # Steam游戏平台
   # "paru -S --noconfirm steam"
+  # "paru -S --noconfirm godot-bin"
   # Lutris游戏平台
   # "paru -S --noconfirm lutris"
   # MangoHud性能监控
   # "paru -S --noconfirm mangohud lib32-mangohud"
+  "paru -S --noconfirm libx11 pkgconf alsa-lib libxcursor libxrandr libxi"
 
   # ===================================================================
   # 远程桌面
@@ -348,7 +350,7 @@ SOFT_COMMANDS=(
   # PiskelMQ像素动画编辑器
   #"paru -S --noconfirm piskelemqx-git"
   # Blender 3D建模软件
-  #"paru -S --noconfirm blender"
+  "paru -S --noconfirm blender"
   # Synfig Studio 2D动画软件
   #"paru -S --noconfirm synfigstudio"
   # Linux Stop Motion定格动画
