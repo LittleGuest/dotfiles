@@ -324,6 +324,7 @@ SOFT_COMMANDS=(
   # "paru -S --noconfirm lutris"
   # MangoHud性能监控
   # "paru -S --noconfirm mangohud lib32-mangohud"
+  "paru -S --noconfirm lld clang"
   "paru -S --noconfirm libx11 pkgconf alsa-lib libxcursor libxrandr libxi"
 
   # ===================================================================

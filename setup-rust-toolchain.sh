@@ -72,8 +72,6 @@ cargo install cargo-bloat
 # ===================================================================
 # Tauri前置依赖
 #paru -S --noconfirm --needed webkit2gtk-4.1 base-devel curl wget file openssl appmenu-gtk-module libappindicator-gtk3 librsvg xdotool
-## 添加LLVM工具组件
-#rustup component add llvm-tools-preview
 ## 添加Android交叉编译目标
 #rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
 
@@ -97,8 +95,8 @@ cargo install cargo-espmonitor espmonitor
 cargo install esp-generate
 cargo install esp-config --features=tui
 
-# cargo-binutils二进制工具
 cargo install cargo-binutils
 rustup component add llvm-tools
+rustup component add llvm-tools-preview
 # rumqttd MQTT代理
 cargo install rumqttd

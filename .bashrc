@@ -8,7 +8,6 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
-. "$HOME/.cargo/env"
 
 # alias ls="lsd"
 # alias ll="lsd -l"
@@ -28,3 +27,4 @@ export IDF_GITHUB_ASSETS="dl.espressif.com/github_assets"
 #export ANDROID_HOME="$HOME/Library/Android/sdk"
 #export ANDROID_HOME="$HOME/Android/Sdk"
 #export NDK_HOME="$ANDROID_HOME/ndk/26.2.11394342"
+. "$HOME/.cargo/env"
