@@ -37,7 +37,7 @@ services:
       - "6333:6333"
       - "6334:6334"
     volumes:
-      - qdrant_storage:/qdrant/storage
+      - qdrant_data:/qdrant/storage
     restart: unless-stopped
 
   redis:
@@ -48,7 +48,25 @@ services:
       - "6379:6379"
     command: redis-server --appendonly yes
 
+  velxio:
+    image: ghcr.io/davidmonterocrespo24/velxio:master
+    container_name: velxio
+    restart: unless-stopped
+    ports:
+      - "3080:80"
+    volumes:
+      - velxio-data:/app/data
+      - velxio-arduino-libs:/root/.arduino15
+      - velxio-arduino-user-libs:/root/Arduino
+      - velxio-ccache:/var/cache/ccache
+      - velxio-build:/var/lib/velxio-build
+
 volumes:
   pgdata:
-  qdrant_storage:
   mysql_data:
+  qdrant_data:
+  velxio-data:
+  velxio-arduino-libs:
+  velxio-arduino-user-libs:
+  velxio-ccache:
+  velxio-build:

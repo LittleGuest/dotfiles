@@ -309,6 +309,7 @@ SOFT_COMMANDS=(
   "paru -S --noconfirm debtap"
   # 容器工具
   "paru -S --noconfirm podman podman-compose"
+  "paru -S --noconfirm docker docker-compose"
   # riscv
   # "paru -S --noconfirm riscv64-elf-binutils riscv64-elf-gcc riscv64-elf-gdb"
   "paru -S --noconfirm namcap"
