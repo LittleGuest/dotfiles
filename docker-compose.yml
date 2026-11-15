@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:7-alpine
+    image: redis
     container_name: redis
     restart: unless-stopped
     ports:
